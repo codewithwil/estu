@@ -6,82 +6,123 @@
     <title>ESTU - Event Organizer Bali | Professional & Creative Local EO Services</title>
     <meta name="description" content="ESTU is your trusted local Bali event organizer. Professional EO Bali services for weddings, corporate events, festivals & cultural celebrations. 8+ years experience.">
     <meta name="keywords" content="event organizer bali, eo bali, local bali eo, bali event planner, wedding organizer bali, corporate event bali, eo lokal bali">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#25D366',
+                        dark: '#0a0a0a',
+                        darker: '#050505',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/sections.css">
 </head>
-<body>
+<body class="bg-dark text-white font-sans overflow-x-hidden">
+    <div class="cursor-dot hidden md:block" aria-hidden="true"></div>
+    <div class="cursor-outline hidden md:block" aria-hidden="true"></div>
 
-    <!-- Cursor -->
-    <div class="cursor-dot hidden md:block"></div>
-    <div class="cursor-outline hidden md:block"></div>
-
-    <!-- Nav -->
-    <nav class="nav-fixed" id="navbar">
-        <a href="#" class="text-2xl font-display font-bold tracking-tight">ESTU</a>
-        <div class="nav-links">
+    <nav class="nav-fixed" id="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#" class="text-2xl font-display font-bold tracking-tight z-10">ESTU</a>
+        
+        <div class="nav-links hidden md:flex gap-8">
             <a href="#about" class="nav-link">About</a>
             <a href="#services" class="nav-link">Services</a>
             <a href="#portfolio" class="nav-link">Portfolio</a>
             <a href="#clients" class="nav-link">Clients</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+
+        <button class="mobile-menu-btn md:hidden" onclick="mobileMenu.toggle()" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="fixed inset-0 bg-black z-50 transform translate-x-full transition-transform duration-500 md:hidden flex flex-col justify-center items-center gap-8">
-        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-2xl">
+    <div id="mobileMenu" class="mobile-menu" role="dialog" aria-label="Mobile menu">
+        <button onclick="mobileMenu.toggle()" class="absolute top-6 right-6 text-2xl" aria-label="Close menu">
             <i class="fas fa-times"></i>
         </button>
-        <a href="#about" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold">ABOUT</a>
-        <a href="#services" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold">SERVICES</a>
-        <a href="#portfolio" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold">PORTFOLIO</a>
-        <a href="#clients" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold">CLIENTS</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="text-3xl font-display font-bold">CONTACT</a>
+        <nav class="flex flex-col gap-8 text-center">
+            <a href="#about" onclick="mobileMenu.toggle()" class="text-3xl font-display font-bold">ABOUT</a>
+            <a href="#services" onclick="mobileMenu.toggle()" class="text-3xl font-display font-bold">SERVICES</a>
+            <a href="#portfolio" onclick="mobileMenu.toggle()" class="text-3xl font-display font-bold">PORTFOLIO</a>
+            <a href="#clients" onclick="mobileMenu.toggle()" class="text-3xl font-display font-bold">CLIENTS</a>
+            <a href="#contact" onclick="mobileMenu.toggle()" class="text-3xl font-display font-bold">CONTACT</a>
+        </nav>
     </div>
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" target="_blank" class="wa-float wa-pulse" title="Chat WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="wa-float wa-pulse" 
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
-    <!-- Scroll Top -->
-    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    <button class="scroll-top" id="scrollTop" onclick="scrollManager.toTop()" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
+    </button>
+
+   <!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-bg" id="starfield">
+        <!-- Bali Elements - Subtle & Elegant -->
+        <div class="bali-mountain"></div>
+        <div class="bali-temple-left"></div>
+        <div class="bali-temple-right"></div>
+        <div class="bali-pattern"></div>
+        
+        <!-- Nebula effects -->
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
     </div>
-
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-            <p class="text-xs tracking-[0.4em] uppercase text-gray-500 mb-8 fade-up">Local Event Organizer Bali</p>
-            <div class="text-reveal mb-8">
-                <h1 class="text-[12vw] md:text-[10rem] font-display font-bold leading-none"><span>ESTU</span></h1>
-            </div>
-            <p class="text-gray-400 max-w-xl mx-auto mb-12 font-light leading-relaxed fade-up delay-2">
-                Crafting unforgettable moments with authentic local touches. From concept to execution, we bring the magic of the Island of the Gods to your events.
-            </p>
-            <a href="#about" class="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-xs font-medium tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-300 fade-up delay-3 group">
-                Explore <i class="fas fa-arrow-down transform group-hover:translate-y-1 transition-transform"></i>
-            </a>
+    <div class="hero-grid"></div>
+    
+    <!-- Decorative Bali Elements Foreground -->
+    <div class="bali-ornament top-left"></div>
+    <div class="bali-ornament bottom-right"></div>
+    
+    <div class="hero-content">
+        <p class="text-xs tracking-[0.4em] uppercase text-gray-500 mb-8 fade-up">Local Event Organizer Bali</p>
+        <div class="text-reveal mb-8">
+            <h1 class="text-[12vw] md:text-[10rem] font-display font-bold leading-none">
+                <span>ESTU</span>
+            </h1>
         </div>
-    </section>
+        <p class="text-gray-400 max-w-xl mx-auto mb-12 font-light leading-relaxed fade-up delay-2">
+            Crafting unforgettable moments with authentic local touches. From concept to execution, we bring the magic of the Island of the Gods to your events.
+        </p>
+        <a href="#about" class="btn-primary fade-up delay-3 group">
+            Explore <i class="fas fa-arrow-down transform group-hover:translate-y-1 transition-transform"></i>
+        </a>
+    </div>
+</section>
 
-    <!-- About -->
     <section class="section" id="about">
         <div class="about-grid">
             <div class="about-image fade-up">
-                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=2070&auto=format&fit=crop" alt="ESTU Event Organizer Bali Team">
+                <img src="assets/images/About Us.png" alt="ESTU Event Organizer Bali Team" loading="lazy">
             </div>
             <div class="fade-up delay-2">
-                <span class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-6 block">About Us</span>
-                <h2 class="text-5xl md:text-6xl font-display font-bold leading-tight mb-6">
+                <span class="section-label">About Us</span>
+                <h2 class="section-title">
                     LOCAL SOUL<br><span class="text-gray-600">GLOBAL TOUCH</span>
                 </h2>
                 <div class="line-decor"></div>
@@ -91,16 +132,17 @@
                 <p class="text-gray-500 font-light leading-relaxed mb-10">
                     Whether you're planning a destination wedding, corporate retreat, or cultural festival, our team of local experts ensures every detail reflects authentic Balinese hospitality combined with international standards.
                 </p>
-                <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
-                    <div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
                         <div class="stat-number counter" data-target="150">0</div>
                         <div class="stat-label">Events Completed</div>
                     </div>
-                    <div>
+                    <div class="stat-item">
                         <div class="stat-number counter" data-target="8">0</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
-                    <div>
+                    <div class="stat-item">
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Client Satisfaction</div>
                     </div>
@@ -109,308 +151,121 @@
         </div>
     </section>
 
-    <!-- Services -->
     <section class="section" id="services">
         <div class="services-container">
             <div class="text-center mb-16">
-                <span class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4 block fade-up">Our Services</span>
-                <h2 class="text-5xl md:text-6xl font-display font-bold fade-up delay-1">INTEGRATED EVENT<br>SOLUTIONS</h2>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto font-light fade-up delay-2">End-to-end event organizer Bali services ensuring every detail of your event is perfect.</p>
+                <span class="section-label">Our Services</span>
+                <h2 class="section-title">INTEGRATED EVENT<br>SOLUTIONS</h2>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto font-light">End-to-end event organizer Bali services ensuring every detail of your event is perfect.</p>
             </div>
-            <div class="services-grid fade-up delay-3">
-                <div class="service-card">
-                    <div class="service-icon text-3xl mb-6 text-white transition-colors"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-xl font-display font-bold mb-3">CONCEPT DEVELOPMENT</h3>
-                    <p class="service-desc text-gray-400 text-sm font-light leading-relaxed transition-colors">Designing unique concepts that reflect your brand identity with authentic Balinese cultural nuances.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon text-3xl mb-6 text-white transition-colors"><i class="fas fa-tasks"></i></div>
-                    <h3 class="text-xl font-display font-bold mb-3">EVENT MANAGEMENT</h3>
-                    <p class="service-desc text-gray-400 text-sm font-light leading-relaxed transition-colors">Precision logistics management, vendor coordination, and timeline control for seamless execution.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon text-3xl mb-6 text-white transition-colors"><i class="fas fa-bullhorn"></i></div>
-                    <h3 class="text-xl font-display font-bold mb-3">DIGITAL MARKETING</h3>
-                    <p class="service-desc text-gray-400 text-sm font-light leading-relaxed transition-colors">Strategic digital communication to maximize reach and engagement for your Bali events.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon text-3xl mb-6 text-white transition-colors"><i class="fas fa-store"></i></div>
-                    <h3 class="text-xl font-display font-bold mb-3">EXHIBITION DESIGN</h3>
-                    <p class="service-desc text-gray-400 text-sm font-light leading-relaxed transition-colors">Eye-catching and interactive booth designs that stand out at any trade show or exhibition.</p>
-                </div>
-                <div class="service-card md:col-span-2">
-                    <div class="service-icon text-3xl mb-6 text-white transition-colors"><i class="fas fa-video"></i></div>
-                    <h3 class="text-xl font-display font-bold mb-3">MEDIA & LIVE STREAMING</h3>
-                    <p class="service-desc text-gray-400 text-sm font-light leading-relaxed max-w-lg transition-colors">Broadcast-quality video production and professional live streaming services for hybrid events.</p>
-                </div>
+            
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>CONCEPT DEVELOPMENT</h3>
+                    <p>Designing unique concepts that reflect your brand identity with authentic Balinese cultural nuances.</p>
+                </article>
+                
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>EVENT MANAGEMENT</h3>
+                    <p>Precision logistics management, vendor coordination, and timeline control for seamless execution.</p>
+                </article>
+                
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>DIGITAL MARKETING</h3>
+                    <p>Strategic digital communication to maximize reach and engagement for your Bali events.</p>
+                </article>
+                
+                <article class="service-card">
+                    <div class="service-icon"><i class="fas fa-store"></i></div>
+                    <h3>EXHIBITION DESIGN</h3>
+                    <p>Eye-catching and interactive booth designs that stand out at any trade show or exhibition.</p>
+                </article>
+                
+                <article class="service-card md:col-span-2">
+                    <div class="service-icon"><i class="fas fa-video"></i></div>
+                    <h3>MEDIA & LIVE STREAMING</h3>
+                    <p>Broadcast-quality video production and professional live streaming services for hybrid events.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO -->
-    <section class="section portfolio-section" id="portfolio">
-        
-        <!-- TITLE & SHOW ALL BUTTON -->
-        <div class="portfolio-header-top">
-            <span class="portfolio-label fade-up">Portfolio</span>
-            <h2 class="portfolio-title-main fade-up delay-1">OUR WORK</h2>
-            
-            <button class="show-all-btn fade-up delay-2" onclick="showAllPortfolio()">
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-header">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-title">OUR WORK</h2>
+            <button class="show-all-btn" onclick="portfolio.showAll()">
                 View All Projects <i class="fas fa-arrow-right"></i>
             </button>
         </div>
 
-        <!-- MASONRY GRID -->
         <div class="portfolio-masonry" id="portfolioGrid">
-            <!-- Item 1: Large -->
-            <div class="portfolio-item fade-up" data-category="wedding">
-                <img src="https://images.unsplash.com/photo-1519225468316-7440560e601e?q=80&w=2070&auto=format&fit=crop" alt="Royal Balinese Wedding by ESTU Event Organizer Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Traditional Wedding</span>
-                    <h3 class="portfolio-title">THE ROYAL BALINESE</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 2: Wide -->
-            <div class="portfolio-item fade-up delay-1" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop" alt="Bali Creative Summit by EO Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Conference</span>
-                    <h3 class="portfolio-title">BALI CREATIVE SUMMIT</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 3: Square -->
-            <div class="portfolio-item fade-up delay-2" data-category="festival">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop" alt="Sunset Beach Festival Event Organizer Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Music Festival</span>
-                    <h3 class="portfolio-title">SUNSET BEACH FEST</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 4: Square -->
-            <div class="portfolio-item fade-up delay-3" data-category="cultural">
-                <img src="https://images.unsplash.com/photo-1519671482616-16bf5434d3d9?q=80&w=2070&auto=format&fit=crop" alt="Bali Art Festival Cultural Event">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Cultural Event</span>
-                    <h3 class="portfolio-title">BALI ART FESTIVAL</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 5: Wide -->
-            <div class="portfolio-item fade-up delay-4" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1505373877841-8d43f7007709?q=80&w=2012&auto=format&fit=crop" alt="Nusantara Luxury Product Launch EO Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Product Launch</span>
-                    <h3 class="portfolio-title">NUSANTARA LUXURY</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 6: Tall -->
-            <div class="portfolio-item fade-up delay-5" data-category="wedding">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" alt="Tropical Garden Wedding Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Garden Wedding</span>
-                    <h3 class="portfolio-title">TROPICAL DREAMS</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 7: Square -->
-            <div class="portfolio-item fade-up" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop" alt="Corporate Gala Dinner Event Organizer Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Gala Dinner</span>
-                    <h3 class="portfolio-title">CORPORATE GALA</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 8: Wide -->
-            <div class="portfolio-item fade-up delay-1" data-category="festival">
-                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" alt="Ocean Breeze Beach Party EO Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Beach Party</span>
-                    <h3 class="portfolio-title">OCEAN BREEZE</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 9: Wide -->
-            <div class="portfolio-item fade-up delay-2" data-category="cultural">
-                <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=2070&auto=format&fit=crop" alt="Legacy of Bali Traditional Performance">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Performance</span>
-                    <h3 class="portfolio-title">LEGACY OF BALI</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 10: Tall -->
-            <div class="portfolio-item fade-up delay-3" data-category="wedding">
-                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=1974&auto=format&fit=crop" alt="Cliffside Intimate Wedding Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Intimate Wedding</span>
-                    <h3 class="portfolio-title">CLIFFSIDE VOWS</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
-            <!-- Item 11: Square -->
-            <div class="portfolio-item fade-up delay-4" data-category="corporate">
-                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=2070&auto=format&fit=crop" alt="Executive Business Retreat EO Bali">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Business Meeting</span>
-                    <h3 class="portfolio-title">EXECUTIVE RETREAT</h3>
-                </div>
-                <div class="portfolio-btn">View</div>
-            </div>
-
         </div>
     </section>
 
-    <!-- CLIENTS -->
     <section class="clients-section" id="clients">
-        <div class="clients-header fade-up">
-            <span class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4 block">Trusted By</span>
-            <h2 class="font-display font-bold">OUR CLIENTS</h2>
+        <div class="clients-header">
+            <span class="section-label text-gray-500">Trusted By</span>
+            <h2 class="font-display font-bold text-4xl mt-4">OUR CLIENTS</h2>
         </div>
         
-        <div class="clients-logo-grid fade-up delay-2">
-            <div class="client-logo-item" title="Agung Automall">
-                <img src="./assets/images/client/agung.png" alt="Agung Automall">
-            </div>
-            
-            <div class="client-logo-item" title="Angker">
-                <img src="./assets/images/client/angker.png" alt="Angker">
-            </div>
-            
-            <div class="client-logo-item" title="Astra International">
-                <img src="./assets/images/client/astra.png" alt="Astra International">
-            </div>
-        
-            <div class="client-logo-item" title="Auto 2000">
-                <img src="./assets/images/client/auto.jpg" alt="Auto 2000">
-            </div>
-
-            <div class="client-logo-item" title="Bali Tourism">
-                <img src="./assets/images/client/bali.png" alt="Bali Tourism">
-            </div>
-
-            <div class="client-logo-item" title="Bali Beach Run">
-                <img src="./assets/images/client/beachbali.png" alt="Bali Beach Run">
-            </div>
-
-            <div class="client-logo-item" title="Fitness First">
-                <img src="./assets/images/client/fitness.png" alt="Fitness First">
-            </div>
-
-            <div class="client-logo-item" title="Hardy's">
-                <img src="./assets/images/client/hardy.png" alt="Hardy's">
-            </div>
-
-            <div class="client-logo-item" title="ISS">
-                <img src="./assets/images/client/iss.svg" alt="ISS">
-            </div>
-
-            <div class="client-logo-item" title="Jasindo Insurance">
-                <img src="./assets/images/client/jasindo.png" alt="Jasindo Insurance">
-            </div>
-
-            <div class="client-logo-item" title="Indonesia MDG Awards 2013">
-                <img src="./assets/images/client/mdg.png" alt="Indonesia MDG Awards 2013">
-            </div>
-
-            <div class="client-logo-item" title="OJK">
-                <img src="./assets/images/client/ojk.png" alt="OJK">
-            </div>
-
-            <div class="client-logo-item" title="Pertamina">
-                <img src="./assets/images/client/pertamina.png" alt="Pertamina">
-            </div>
-            
-            <div class="client-logo-item" title="Pemuda Pancasila">
-                <img src="./assets/images/client/pp.png" alt="Pemuda Pancasila">
-            </div>
-
-            <div class="client-logo-item" title="Pucuk Harum">
-                <img src="./assets/images/client/pucuk.png" alt="Pucuk Harum">
-            </div>
-
-            <div class="client-logo-item" title="Jasa Raharja">
-                <img src="./assets/images/client/raharja.png" alt="Jasa Raharja">
-            </div>
-
-            <div class="client-logo-item" title="Suzuki">
-                <img src="./assets/images/client/suzuki.png" alt="Suzuki">
-            </div>
-
-            <div class="client-logo-item" title="Telkomsel">
-                <img src="./assets/images/client/telkomsel.png" alt="Telkomsel">
-            </div>
-
-            <div class="client-logo-item" title="Tough Mudder">
-                <img src="./assets/images/client/tough.png" alt="Tough Mudder">
-            </div>
-
-            <div class="client-logo-item" title="Tri">
-                <img src="./assets/images/client/tri.png" alt="Tri">
-            </div>
-            
-            <div class="client-logo-item" title="Yamaha">
-                <img src="./assets/images/client/yamaha.png" alt="Yamaha">
-            </div>
+        <div class="clients-logo-grid" id="clientsGrid">
         </div>
     </section>
 
-    <!-- Contact - WhatsApp Only -->
     <section class="section" id="contact">
         <div class="contact-container">
             <div class="text-center mb-16">
-                <span class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4 block fade-up">Contact</span>
-                <h2 class="text-5xl md:text-6xl font-display font-bold fade-up delay-1">LET'S COLLABORATE</h2>
-                <p class="text-gray-400 mt-6 max-w-xl mx-auto font-light fade-up delay-2">Have an event idea? Contact our local Bali EO team directly via WhatsApp for quick response.</p>
+                <span class="section-label">Contact</span>
+                <h2 class="section-title">LET'S COLLABORATE</h2>
+                <p class="text-gray-400 mt-6 max-w-xl mx-auto font-light">Have an event idea? Contact our local Bali EO team directly via WhatsApp for quick response.</p>
             </div>
             
-            <div class="contact-grid fade-up delay-3">
-                <div class="text-center md:text-left">
-                    <div class="contact-info-item">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
                         <span class="contact-label">WhatsApp</span>
-                        <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" target="_blank" class="contact-value flex items-center gap-3 hover:text-[#25D366]">
-                            <i class="fab fa-whatsapp text-[#25D366]"></i>
+                        <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="contact-value hover:text-[#25D366] transition-colors">
+                            <i class="fab fa-whatsapp text-[#25D366] mr-3"></i>
                             +62 815 7200 0039
                         </a>
                         <p class="text-gray-500 text-sm mt-2">Click to chat directly</p>
                     </div>
                     
-                    <div class="contact-info-item">
+                    <div class="contact-item">
                         <span class="contact-label">Email</span>
                         <p class="text-lg text-white font-light">estu.office.bali@gmail.com</p>
                     </div>
 
-                    <div class="contact-info-item">
+                    <div class="contact-item">
                         <span class="contact-label">Operating Hours</span>
                         <p class="text-lg text-white font-light">Monday - Saturday<br>09:00 - 17:00 WITA (Bali Time)</p>
                     </div>
 
-                    <div class="contact-info-item">
+                    <div class="contact-item">
                         <span class="contact-label">Location</span>
-                        <p class="text-lg text-gray-400 font-light">Jalan Raya Padang Luwih, Dalung, North Kuta,<br>Badung Regency, Bali 80117, Indonesia</p>
+                        <address class="text-lg text-gray-400 font-light not-italic">
+                            Jalan Raya Padang Luwih, Dalung, North Kuta,<br>
+                            Badung Regency, Bali 80117, Indonesia
+                        </address>
                     </div>
 
-                    <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-black font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-[#128C7E] hover:text-white transition-all duration-300 mt-4">
+                    <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="btn-whatsapp mt-8">
                         <i class="fab fa-whatsapp text-xl"></i>
                         Chat WhatsApp Now
                     </a>
                 </div>
 
-                <div class="bg-white/5 p-8 rounded-lg border border-white/10">
+                <div class="why-choose-us">
                     <h3 class="text-2xl font-display font-bold mb-4">Why Choose ESTU?</h3>
                     <ul class="space-y-4 text-gray-400 font-light">
                         <li class="flex items-start gap-3">
@@ -443,13 +298,19 @@
                 </div>
             </div>
 
-            <div class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
-                <div class="flex items-center gap-2"><span class="text-xl font-display font-bold text-white">ESTU</span><span class="tracking-wider">EVENT ORGANIZER BALI</span></div>
+            <footer class="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-display font-bold text-white">ESTU</span>
+                    <span class="tracking-wider">EVENT ORGANIZER BALI</span>
+                </div>
                 <div class="tracking-wider">&copy; 2024 ESTU. All rights reserved.</div>
-            </div>
+            </footer>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/cursor.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/portfolio.js"></script>
 </body>
 </html>
