@@ -21,6 +21,8 @@ html {
 }
 
 body {
+    -webkit-user-select: none;
+    user-select: none;
     background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-light) 50%, #0f0f0f 100%);
     color: var(--color-text);
     font-family: var(--font-sans);
@@ -32,6 +34,9 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
 }
 
 a {

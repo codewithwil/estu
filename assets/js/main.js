@@ -4,6 +4,45 @@ const App = {
         this.initScrollEffects();
         this.initSmoothScroll();
         this.renderClients();
+        this.initSecurity();
+    },
+
+    initSecurity() {
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("selectstart", e => e.preventDefault());
+        document.addEventListener("copy", e => e.preventDefault());
+        document.addEventListener("dragstart", e => {
+            if (e.target.tagName === "IMG") {
+                e.preventDefault();
+            }
+        });
+        document.addEventListener("keydown", function (e) {
+
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && e.key === "I") ||
+                (e.ctrlKey && e.shiftKey && e.key === "J") ||
+                (e.ctrlKey && e.shiftKey && e.key === "C") ||
+                (e.ctrlKey && e.key === "U") ||
+                (e.ctrlKey && e.key === "S")
+            ) {
+                e.preventDefault();
+            }
+
+        });
+
+            setInterval(() => {
+                const threshold = 160;
+
+                if (
+                    window.outerWidth - window.innerWidth > threshold ||
+                    window.outerHeight - window.innerHeight > threshold
+                ) {
+                    document.body.style.filter = "blur(10px)";
+                } else {
+                    document.body.style.filter = "";
+                }
+            }, 1000);
     },
 
     initStarfield() {
@@ -117,6 +156,7 @@ const scrollManager = {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 };
+
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => App.init());
