@@ -1,91 +1,91 @@
 const portfolioData = [
     {
         id: 1,
-        title: 'THE ROYAL BALINESE',
-        category: 'Traditional Wedding',
-        type: 'wedding',
+        title: 'Mass Wedding Event',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/wide/1.png',
-        alt: 'Royal Balinese Wedding by ESTU Event Organizer Bali'
+        alt: 'Mass Wedding Event Wedding by ESTU Event Organizer Bali'
     },
     {
         id: 2,
-        title: 'BALI CREATIVE SUMMIT',
-        category: 'Conference',
-        type: 'corporate',
+        title: 'Fazzio Youth Bali Festival',
+        category: 'Competition',
+        type: 'competititon',
         image: 'assets/images/portofolio/wide/2.png',
-        alt: 'Bali Creative Summit by EO Bali'
+        alt: 'Competition Fazzio Youth Bali Festival Event Bali Creative Summit by EO Bali'
     },
     {
         id: 3,
-        title: 'SUNSET BEACH FEST',
-        category: 'Music Festival',
-        type: 'festival',
+        title: 'Mass Wedding Event',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/1.png',
-        alt: 'Sunset Beach Festival Event Organizer Bali'
+        alt: 'Mass Wedding Event Organizer Bali'
     },
     {
         id: 4,
-        title: 'BALI ART FESTIVAL',
-        category: 'Cultural Event',
-        type: 'cultural',
+        title: 'Mass Wedding Event',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/2.png',
         alt: 'Bali Art Festival Cultural Event'
     },
     {
         id: 5,
-        title: 'NUSANTARA LUXURY',
-        category: 'Product Launch',
-        type: 'corporate',
+        title: 'Employee Gathering',
+        category: 'Gathering',
+        type: 'gathering',
         image: 'assets/images/portofolio/wide/3.png',
         alt: 'Nusantara Luxury Product Launch EO Bali'
     },
     {
         id: 6,
-        title: 'TROPICAL DREAMS',
-        category: 'Garden Wedding',
-        type: 'wedding',
+        title: 'Heavy-Duty Frame',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/3.png',
-        alt: 'Tropical Garden Wedding Bali'
+        alt: 'Exhibition Heavy-Duty Frame Bali'
     },
     {
         id: 7,
-        title: 'CORPORATE GALA',
-        category: 'Gala Dinner',
-        type: 'corporate',
+        title: 'Mass Wedding Event',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/4.png',
-        alt: 'Corporate Gala Dinner Event Organizer Bali'
+        alt: 'Exhibition Mass Wedding Event Bali'
     },
     {
         id: 8,
-        title: 'OCEAN BREEZE',
-        category: 'Beach Party',
-        type: 'festival',
+        title: 'Heavy-Duty Frame',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/wide/4.png',
-        alt: 'Ocean Breeze Beach Party EO Bali'
+        alt: 'Exhibition Heavy-Duty Frame EO Bali'
     },
     {
         id: 9,
-        title: 'LEGACY OF BALI',
-        category: 'Performance',
-        type: 'cultural',
+        title: 'Heavy-Duty Frame',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/wide/5.png',
-        alt: 'Legacy of Bali Traditional Performance'
+        alt: 'Heavy-Duty Frame Bali'
     },
     {
         id: 10,
-        title: 'CLIFFSIDE VOWS',
-        category: 'Intimate Wedding',
-        type: 'wedding',
+        title: 'Heavy-Duty Frame',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/5.png',
-        alt: 'Cliffside Intimate Wedding Bali'
+        alt: 'Heavy-Duty Frame Event Organizer Bali'
     },
     {
         id: 11,
-        title: 'EXECUTIVE RETREAT',
-        category: 'Business Meeting',
-        type: 'corporate',
+        title: 'Heavy-Duty Frame',
+        category: 'Exhibition',
+        type: 'exhibition',
         image: 'assets/images/portofolio/long/6.png',
-        alt: 'Executive Business Retreat EO Bali'
+        alt: 'Heavy-Duty Frame EO Bali'
     }
 ];
 
