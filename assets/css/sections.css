@@ -619,9 +619,13 @@
 /* Clients Section */
 .clients-section {
     padding: 6rem 0;
-    background: #ffffff;
-    color: #000;
+    background: 
+        radial-gradient(ellipse at top, #3a3a3a 0%, transparent 60%),
+        radial-gradient(ellipse at bottom, #404040 0%, transparent 60%),
+        linear-gradient(to bottom, #2d2d2d 0%, #252525 50%, #2d2d2d 100%);
+    color: #fff;
     overflow: hidden;
+    position: relative;
 }
 
 .clients-header {

@@ -90,70 +90,69 @@
 
     </main>
 
-    <div class="modal" id="portfolioModal" onclick="modal.closeOnBackground(event)">
-        <button class="modal-close" onclick="modal.close()" aria-label="Close modal">
-            <i class="fas fa-times"></i>
-        </button>
+<div class="modal" id="portfolioModal" onclick="modal.closeOnBackground(event)">
+    <button class="modal-close" onclick="modal.close()" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="modal-content">
+        <!-- Hapus div grid yang dobel, langsung isi konten -->
+        <div class="modal-image-wrapper visible" id="modalImageWrapper">
+            <img id="modalImage" src="" alt="" class="modal-image">
+        </div>
         
-        <div class="modal-content">
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-                <div class="modal-image-wrapper visible" id="modalImageWrapper">
-                    <img id="modalImage" src="" alt="" class="modal-image">
+        <div class="modal-text-content visible" id="modalTextContent">
+            <div class="modal-content-wrapper visible" id="modalContentWrapper">
+                <span id="modalCategory" class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4 block"></span>
+                <h2 id="modalTitle" class="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight"></h2>
+                
+                <div class="space-y-4 text-gray-400 font-light leading-relaxed mb-8" id="modalDescription"></div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="detail-card bg-white/5 p-4 rounded-lg">
+                        <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Date</span>
+                        <span id="modalDate" class="text-white font-medium"></span>
+                    </div>
+                    <div class="detail-card bg-white/5 p-4 rounded-lg">
+                        <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Location</span>
+                        <span id="modalLocation" class="text-white font-medium"></span>
+                    </div>
+                    <div class="detail-card bg-white/5 p-4 rounded-lg">
+                        <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Guests</span>
+                        <span id="modalGuests" class="text-white font-medium"></span>
+                    </div>
+                    <div class="detail-card bg-white/5 p-4 rounded-lg">
+                        <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Services</span>
+                        <span id="modalServices" class="text-white font-medium"></span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-3 mb-8" id="modalTags"></div>
+
+                <div class="flex flex-wrap gap-3 items-center">
+                    <a href="https://wa.me/6281572000039?text=Hello%20ESTU ,%20I'm%20interested%20in%20similar%20event" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-black font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-[#128C7E] hover:text-white transition-all duration-300">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        Inquire Similar Event
+                    </a>
+                    
+                    <button onclick="modal.prev()" class="nav-btn px-6 py-4 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                        <i class="fas fa-arrow-left mr-2"></i> Prev
+                    </button>
+                    <button onclick="modal.next()" class="nav-btn px-6 py-4 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
                 </div>
                 
-                <div class="md:sticky md:top-8 modal-text-content visible" id="modalTextContent">
-                    <div class="modal-content-wrapper visible" id="modalContentWrapper">
-                        <span id="modalCategory" class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-4 block"></span>
-                        <h2 id="modalTitle" class="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight"></h2>
-                        
-                        <div class="space-y-4 text-gray-400 font-light leading-relaxed mb-8" id="modalDescription"></div>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="detail-card bg-white/5 p-4 rounded-lg">
-                                <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Date</span>
-                                <span id="modalDate" class="text-white font-medium"></span>
-                            </div>
-                            <div class="detail-card bg-white/5 p-4 rounded-lg">
-                                <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Location</span>
-                                <span id="modalLocation" class="text-white font-medium"></span>
-                            </div>
-                            <div class="detail-card bg-white/5 p-4 rounded-lg">
-                                <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Guests</span>
-                                <span id="modalGuests" class="text-white font-medium"></span>
-                            </div>
-                            <div class="detail-card bg-white/5 p-4 rounded-lg">
-                                <span class="text-gray-500 block text-xs uppercase tracking-wider mb-1">Services</span>
-                                <span id="modalServices" class="text-white font-medium"></span>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-3 mb-8" id="modalTags"></div>
-
-                        <div class="flex flex-wrap gap-3 items-center">
-                            <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20similar%20event" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-black font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-[#128C7E] hover:text-white transition-all duration-300">
-                                <i class="fab fa-whatsapp text-xl"></i>
-                                Inquire Similar Event
-                            </a>
-                            
-                            <button onclick="modal.prev()" class="nav-btn px-6 py-4 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300">
-                                <i class="fas fa-arrow-left mr-2"></i> Prev
-                            </button>
-                            <button onclick="modal.next()" class="nav-btn px-6 py-4 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300">
-                                Next <i class="fas fa-arrow-right ml-2"></i>
-                            </button>
-                        </div>
-                        
-                        <div class="mt-6 text-sm text-gray-500">
-                            <span id="modalCounter">1</span> / <span id="modalTotal">7</span>
-                        </div>
-                    </div>
+                <div class="mt-6 text-sm text-gray-500">
+                    <span id="modalCounter">1</span> / <span id="modalTotal">7</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" 
        target="_blank" 
