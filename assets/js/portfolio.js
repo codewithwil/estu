@@ -17,11 +17,11 @@ const portfolioData = [
     },
     {
         id: 3,
-        title: 'Mass Wedding Event',
+        title: 'Classy Sociaty',
         category: 'Exhibition',
         type: 'exhibition',
-        image: 'assets/images/portofolio/long/1.png',
-        alt: 'Mass Wedding Event Organizer Bali'
+        image: 'assets/images/portofolio/long/1.jpeg',
+        alt: 'Classy Sociaty Event Organizer Bali'
     },
     {
         id: 4,
@@ -41,11 +41,11 @@ const portfolioData = [
     },
     {
         id: 6,
-        title: 'Heavy-Duty Frame',
+        title: 'Touring',
         category: 'Exhibition',
         type: 'exhibition',
-        image: 'assets/images/portofolio/long/3.png',
-        alt: 'Exhibition Heavy-Duty Frame Bali'
+        image: 'assets/images/portofolio/long/3.jpeg',
+        alt: 'Touring Yamaha Bali'
     },
     {
         id: 7,

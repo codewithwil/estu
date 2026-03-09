@@ -4,7 +4,7 @@ const portfolioData = [
         title: "Mass Wedding Event",
         category: "Exhibition",
         type: "exhibition",
-        image: "assets/images/portofolio/long/1.png",
+        image: "assets/images/portofolio/long/7.png",
         alt: "Mass Wedding Event Jakarta organized by Event Organizer",
         description:
         "A large-scale mass wedding event organized to help couples celebrate their marriage in a meaningful and festive ceremony. The event included official marriage ceremonies, professional wedding documentation, and a shared reception attended by families and guests.",
@@ -54,7 +54,7 @@ const portfolioData = [
     title: "Heavy-Duty Frame",
     category: "Exhibition",
     type: "exhibition",
-    image: "assets/images/portofolio/long/3.png",
+    image: "assets/images/portofolio/long/8.png",
     alt: "Heavy-Duty Frame exhibition booth",
     description:
         "Heavy-Duty Frame is a large-scale construction exhibition showcasing innovative steel frame solutions and building materials. The event featured exhibition booths, product demonstrations, and networking opportunities with contractors, developers, and industry professionals.",
@@ -123,11 +123,51 @@ const portfolioData = [
     guests: "1,200 visitors",
     services: "Exhibition Booth Design, Event Management, Brand Activation",
     tags: [
-        "Construction Expo",
-        "Exhibition Event",
-        "Rangka Kuat",
-        "Business Event",
-    ],
+          "Construction Expo",
+          "Exhibition Event",
+          "Rangka Kuat",
+          "Business Event",
+      ],
+    },
+    {
+        id: 8,
+        title: "Classy Society",
+        category: "Event",
+        type: "event",
+        image: "assets/images/portofolio/long/1.jpeg",
+        alt: "Classy Society social event organized by event organizer",
+        description:
+            "Classy Society is an exclusive social gathering event designed to bring together professionals, entrepreneurs, and community members in a sophisticated and engaging environment. The event featured live entertainment, networking sessions, stylish stage setups, and a premium guest experience.",
+        date: "August 2025",
+        location: "Bali",
+        guests: "300 invited guests",
+        services: "Event Concept Development, Stage & Lighting Production, Guest Management, Event Coordination",
+        tags: [
+            "Social Event",
+            "Community Gathering",
+            "Premium Event",
+            "Networking Event"
+        ],
+    },
+    {
+        id: 9,
+        title: "Yamaha Touring Event",
+        category: "Brand Activation",
+        type: "event",
+        image: "assets/images/portofolio/long/3.jpeg",
+        alt: "Yamaha motorcycle touring event in Bali",
+        description:
+            "Yamaha Touring Event is a motorcycle community ride organized to connect riders and showcase Yamaha motorcycles through an exciting road experience. The event included a group touring route, brand activation activities, safety riding sessions, and entertainment at the final destination.",
+        date: "September 2025",
+        location: "Bali",
+        guests: "150 riders",
+        services: "Event Management, Route Planning, Rider Coordination, Brand Activation",
+        tags: [
+            "Motorcycle Touring",
+            "Yamaha Event",
+            "Brand Activation",
+            "Community Ride"
+        ],
     }
 ];
 
