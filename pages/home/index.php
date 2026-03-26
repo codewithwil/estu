@@ -81,39 +81,45 @@
     </button>
 
    <!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="hero-bg" id="starfield">
-        <!-- Bali Elements - Subtle & Elegant -->
-        <div class="bali-mountain"></div>
-        <div class="bali-temple-left"></div>
-        <div class="bali-temple-right"></div>
-        <div class="bali-pattern"></div>
-        
-        <!-- Nebula effects -->
-        <div class="nebula nebula-1"></div>
-        <div class="nebula nebula-2"></div>
-    </div>
-    <div class="hero-grid"></div>
-    
-    <!-- Decorative Bali Elements Foreground -->
-    <div class="bali-ornament top-left"></div>
-    <div class="bali-ornament bottom-right"></div>
-    
-    <div class="hero-content">
-        <p class="text-xs tracking-[0.4em] uppercase text-gray-500 mb-8 fade-up">Local Event Organizer Bali</p>
-        <div class="text-reveal mb-8">
-            <h1 class="text-[12vw] md:text-[10rem] font-display font-bold leading-none">
-                <span>ESTU</span>
-            </h1>
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-slide" style="background-image: url('img1.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img2.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img3.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img4.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img5.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img6.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img7.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img8.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img9.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('img10.jpg')"></div>
         </div>
-        <p class="text-gray-400 max-w-xl mx-auto mb-12 font-light leading-relaxed fade-up delay-2">
-            Crafting unforgettable moments with authentic local touches. From concept to execution, we bring the magic of the Island of the Gods to your events.
-        </p>
-        <a href="#about" class="btn-primary fade-up delay-3 group">
-            Explore <i class="fas fa-arrow-down transform group-hover:translate-y-1 transition-transform"></i>
-        </a>
-    </div>
-</section>
+        <div class="hero-grid"></div>
+        
+        <!-- Decorative Bali Elements Foreground -->
+        <div class="bali-ornament top-left"></div>
+        <div class="bali-ornament bottom-right"></div>
+        
+        <div class="hero-content">
+            <p class="text-xs tracking-[0.4em] uppercase text-white mb-8 fade-up">Event Organizer Bali</p>
+            <div class="text-reveal mb-8">
+                <h1 class="text-[12vw] md:text-[10rem] font-display font-bold leading-none">
+                    <span>ESTU</span>
+                </h1>
+            </div>
+            <p class="text-white max-w-xl mx-auto mb-12 font-light leading-relaxed fade-up delay-2">
+                <span class="text-2xl font-bold block">
+                    Designing Experiences, Not Just Events
+                </span>
+                <span class="block text-lg mt-2">
+                    We turn ideas into memorable events through creative concepts and flawless execution.
+                </span>
+            </p>
+            <a href="#about" class="btn-primary fade-up delay-3 group">
+                Explore <i class="fas fa-arrow-down transform group-hover:translate-y-1 transition-transform"></i>
+            </a>
+        </div>
+    </section>
 
     <section class="section" id="about">
         <div class="about-grid">

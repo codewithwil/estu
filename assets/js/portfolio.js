@@ -41,9 +41,9 @@ const portfolioData = [
     },
     {
         id: 6,
-        title: 'Touring',
-        category: 'Exhibition',
-        type: 'exhibition',
+        title: 'Yamaha Touring',
+        category: 'Touring',
+        type: 'touring',
         image: 'assets/images/portofolio/long/3.jpeg',
         alt: 'Touring Yamaha Bali'
     },
@@ -125,7 +125,7 @@ const portfolio = {
     },
 
     showAll() {
-        window.location.href = 'portfolio.html';
+        window.location.href = 'portfolio.php';
     }
 };
 
