@@ -373,6 +373,7 @@ $waMessage = rawurlencode("Hello ESTU, I'm interested in your Event Organizer Ba
         </script>
         <script>
             const BASE_URL = "<?= base_url() ?>";
+            const ASSET_URL = "<?= asset() ?>";
         </script>
         <script src="<?= asset('js/animations.js') ?>"></script>
         <script src="<?= asset('js/cursor.js') ?>"></script>

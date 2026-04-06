@@ -1,176 +1,4 @@
-const portfolioData = [
-    {
-        id: 1,
-        title: "Mass Wedding Event",
-        category: "Exhibition",
-        type: "exhibition",
-        image: "assets/images/portofolio/long/7.png",
-        alt: "Mass Wedding Event Jakarta organized by Event Organizer",
-        description:
-        "A large-scale mass wedding event organized to help couples celebrate their marriage in a meaningful and festive ceremony. The event included official marriage ceremonies, professional wedding documentation, and a shared reception attended by families and guests.",
-        date: "January 2026",
-        location: "Jakarta Convention Center",
-        guests: "100 couples and families",
-        services: "Event Planning, Wedding Coordination, Stage Production",
-        tags: ["Mass Wedding", "Wedding Event", "Social Event", "Jakarta"],
-    },
-    {
-        id: 2,
-        title: "Mass Wedding Event",
-        category: "Exhibition",
-        type: "exhibition",
-        image: "assets/images/portofolio/long/2.png",
-        alt: "Mass Wedding Ceremony Bekasi organized by Event Organizer",
-        description:
-        "A community mass wedding program designed to support couples in celebrating their marriage with proper ceremonies and festive celebrations. The event included wedding decoration, administration support, entertainment, and full event coordination.",
-        date: "January 2025",
-        location: "Bekasi Convention Hall",
-        guests: "80 couples",
-        services: "Wedding Event Management, Decoration, Documentation",
-        tags: [
-        "Mass Wedding",
-        "Wedding Organizer",
-        "Bekasi Event",
-        "Social Program",
-        ],
-    },
-    {
-        id: 3,
-        title: "Mass Wedding Event",
-        category: "Exhibition",
-        type: "exhibition",
-        image: "assets/images/portofolio/long/4.png",
-        alt: "Mass Wedding Event Tangerang organized by Event Organizer",
-        description:
-        "A festive mass wedding event attended by dozens of couples from various regions. The celebration included marriage ceremonies, elegant wedding decorations, live entertainment, and professional event documentation for every participating couple.",
-        date: "October 2025",
-        location: "Tangerang Convention Center",
-        guests: "90 couples and families",
-        services: "Wedding Event Management, Decoration, Event Coordination",
-        tags: ["Mass Wedding", "Wedding Event", "Social Event", "Tangerang"],
-    },
-    {
-    id: 4,
-    title: "Heavy-Duty Frame",
-    category: "Exhibition",
-    type: "exhibition",
-    image: "assets/images/portofolio/long/8.png",
-    alt: "Heavy-Duty Frame exhibition booth",
-    description:
-        "Heavy-Duty Frame is a large-scale construction exhibition showcasing innovative steel frame solutions and building materials. The event featured exhibition booths, product demonstrations, and networking opportunities with contractors, developers, and industry professionals.",
-    date: "October 2025",
-    location: "ICE BSD Tangerang",
-    guests: "1,200 visitors",
-    services: "Exhibition Booth Design, Event Management, Brand Activation",
-    tags: [
-        "Construction Expo",
-        "Exhibition Event",
-        "Rangka Kuat",
-        "Business Event",
-    ],
-    },
-    {
-    id: 5,
-    title: "Heavy-Duty Frame",
-    category: "Exhibition",
-    type: "exhibition",
-    image: "assets/images/portofolio/wide/4.png",
-    alt: "Rangka Kuat exhibition booth design at construction expo",
-    description:
-        "Heavy-Duty Frame is a large-scale construction exhibition showcasing innovative steel frame solutions and building materials. The event featured exhibition booths, product demonstrations, and networking opportunities with contractors, developers, and industry professionals.",
-    date: "October 2025",
-    location: "ICE BSD Tangerang",
-    guests: "1,200 visitors",
-    services: "Exhibition Booth Design, Event Management, Brand Activation",
-    tags: [
-        "Construction Expo",
-        "Exhibition Event",
-        "Rangka Kuat",
-        "Business Event",
-    ],
-    },
-    {
-    id: 6,
-    title: "Heavy-Duty Frame",
-    category: "Exhibition",
-    type: "exhibition",
-    image: "assets/images/portofolio/long/5.png",
-    alt: "Rangka Kuat construction industry exhibition event",
-    description:
-        "Heavy-Duty Frame is a large-scale construction exhibition showcasing innovative steel frame solutions and building materials. The event featured exhibition booths, product demonstrations, and networking opportunities with contractors, developers, and industry professionals.",
-    date: "October 2025",
-    location: "ICE BSD Tangerang",
-    guests: "1,200 visitors",
-    services: "Exhibition Booth Design, Event Management, Brand Activation",
-    tags: [
-        "Construction Expo",
-        "Exhibition Event",
-        "Rangka Kuat",
-        "Business Event",
-    ],
-    },
-    {
-    id: 7,
-    title: "Heavy-Duty Frame",
-    category: "Exhibition",
-    type: "exhibition",
-    image: "assets/images/portofolio/long/6.png",
-    alt: "Rangka Kuat construction exhibition event booth display",
-    description:
-        "Heavy-Duty Frame is a large-scale construction exhibition showcasing innovative steel frame solutions and building materials. The event featured exhibition booths, product demonstrations, and networking opportunities with contractors, developers, and industry professionals.",
-    date: "October 2025",
-    location: "ICE BSD Tangerang",
-    guests: "1,200 visitors",
-    services: "Exhibition Booth Design, Event Management, Brand Activation",
-    tags: [
-          "Construction Expo",
-          "Exhibition Event",
-          "Rangka Kuat",
-          "Business Event",
-      ],
-    },
-    {
-        id: 8,
-        title: "Classy Society",
-        category: "Event",
-        type: "event",
-        image: "assets/images/portofolio/long/1.jpeg",
-        alt: "Classy Society social event organized by event organizer",
-        description:
-            "Classy Society is an exclusive social gathering event designed to bring together professionals, entrepreneurs, and community members in a sophisticated and engaging environment. The event featured live entertainment, networking sessions, stylish stage setups, and a premium guest experience.",
-        date: "August 2025",
-        location: "Bali",
-        guests: "300 invited guests",
-        services: "Event Concept Development, Stage & Lighting Production, Guest Management, Event Coordination",
-        tags: [
-            "Social Event",
-            "Community Gathering",
-            "Premium Event",
-            "Networking Event"
-        ],
-    },
-    {
-        id: 9,
-        title: "Yamaha Touring Event",
-        category: "Brand Activation",
-        type: "event",
-        image: "assets/images/portofolio/long/3.jpeg",
-        alt: "Yamaha motorcycle touring event in Bali",
-        description:
-            "Yamaha Touring Event is a motorcycle community ride organized to connect riders and showcase Yamaha motorcycles through an exciting road experience. The event included a group touring route, brand activation activities, safety riding sessions, and entertainment at the final destination.",
-        date: "September 2025",
-        location: "Bali",
-        guests: "150 riders",
-        services: "Event Management, Route Planning, Rider Coordination, Brand Activation",
-        tags: [
-            "Motorcycle Touring",
-            "Yamaha Event",
-            "Brand Activation",
-            "Community Ride"
-        ],
-    }
-];
-
+let portfolioData = [];
 let currentFilter       = "all";
 let currentModalIndex   = 0;
 let filteredData        = [...portfolioData];
@@ -183,14 +11,76 @@ const modalImageWrapper     = document.getElementById("modalImageWrapper");
 const modalTextContent      = document.getElementById("modalTextContent");
 const modalContentWrapper   = document.getElementById("modalContentWrapper");
 
-document.addEventListener("DOMContentLoaded", () => {
-  initSecurity();
-  renderPortfolio();
-  initCursor();
-  initScrollEffects();
-  initFilters();
-  animateOnScroll();
-});
+  document.addEventListener("DOMContentLoaded", () => {
+    initSecurity();
+    fetchPortfolio();
+    initCursor();
+    initScrollEffects();
+    initFilters();
+    animateOnScroll();
+  });
+  
+  function capitalize(str) {
+    return str.replace(/\b\w/g, l => l.toUpperCase());
+  }
+
+  function normalize(str) {
+    return str.toLowerCase().replace(/\s+/g, "");
+  }
+
+  async function fetchPortfolio() {
+    try {
+      const res = await fetch(BASE_URL + "/process/portofolio.php?action=get");
+      const data = await res.json();
+
+      portfolioData = data.map((item) => ({
+        id: Number(item.id),
+        title: item.title,
+        category: item.category,
+        type: item.category.toLowerCase().trim() === currentFilter,
+        image: item.filepath,
+        alt: item.title,
+        description: item.description,
+        date: item.year,
+        location: item.location,
+        guests: item.guests + " guests",
+        services: item.services,
+        tags: item.tags ? item.tags.split(",").map(t => t.trim()) : []
+      }));
+      
+      generateTopFilters();
+      renderPortfolio();
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
+  }
+  
+  function generateTopFilters() {
+    const container = document.getElementById("filterContainer");
+    const counts = {};
+
+    portfolioData.forEach(item => {
+      const cat = item.category.toLowerCase().trim();
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+
+    // urutkan dari terbanyak
+    const topCategories = Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3); 
+
+    // render button
+    container.innerHTML = `
+      <button class="filter-btn active" data-filter="all">All</button>
+      ${topCategories.map(([cat]) => `
+        <button class="filter-btn" data-filter="${cat}">
+          ${capitalize(cat)}
+        </button>
+      `).join("")}
+    `;
+
+    initFilters(); 
+  }
 
 function initSecurity() {
     document.addEventListener("contextmenu", e => e.preventDefault());
@@ -231,11 +121,13 @@ function initSecurity() {
 }
 
 function renderPortfolio() {
-  filteredData =
-    currentFilter === "all"
-      ? portfolioData
-      : portfolioData.filter((item) => item.type === currentFilter);
-
+filteredData =
+  currentFilter === "all"
+    ? portfolioData
+    : portfolioData.filter(
+        (item) =>
+          normalize(item.category) === normalize(currentFilter)
+      );
   if (filteredData.length === 0) {
     grid.innerHTML = "";
     emptyState.classList.remove("hidden");
@@ -271,12 +163,14 @@ function renderPortfolio() {
 }
 
 function initFilters() {
-  filterButtons.forEach((btn) => {
+  const buttons = document.querySelectorAll(".filter-btn");
+
+  buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filterButtons.forEach((b) => b.classList.remove("active"));
+      buttons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      currentFilter = btn.dataset.filter;
+      currentFilter = normalize(btn.dataset.filter);
 
       grid.style.opacity = "0";
       grid.style.transform = "translateY(20px)";

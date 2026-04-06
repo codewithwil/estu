@@ -166,6 +166,9 @@ checkAuth();
         </div>
     </div>
 
+      <script>
+        const BASE_URL = "<?= base_url() ?>";
+    </script>
     <script src="<?= asset('js/service/main.js') ?>"></script>
 </body>
 </html>

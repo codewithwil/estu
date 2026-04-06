@@ -5,7 +5,6 @@ let deleteId        = null;
 let draggedElement  = null;
 let draggedIndex    = null;
 
-// GLOBAL VARIABLES - Deklarasikan di luar supaya accessible semua function
 let imagesContainer, imageCounter, addImageBtn, uploadSection, fileInput, 
     searchInput, heroSliderLive, previewBadge, notificationBtn, 
     notificationDropdown, notificationDot, notificationList, markAllReadBtn;
@@ -45,13 +44,11 @@ let notifications = [
   },
 ];
 
-// TUNGGU DOM READY
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
 
 function initApp() {
-    // ASSIGN ELEMENTS KE GLOBAL VARIABLES
     imagesContainer   = document.getElementById("imagesContainer");
     imageCounter      = document.getElementById("imageCounter");
     addImageBtn       = document.getElementById("addImageBtn");
@@ -66,12 +63,10 @@ function initApp() {
     notificationList  = document.getElementById("notificationList");
     markAllReadBtn    = document.getElementById("markAllRead");
 
-    console.log('InitApp - imagesContainer:', imagesContainer); // DEBUG
+    console.log('InitApp - imagesContainer:', imagesContainer); 
 
-    // Setup event listeners
     setupEventListeners();
     
-    // Load data
     renderNotifications();
     loadImages();
 }
@@ -148,7 +143,7 @@ function setupEventListeners() {
             formData.append("image", file);
 
             try {
-                const res = await fetch("/estu/process/homeImages.php", {
+                const res = await fetch(BASE_URL + "/process/homeImages.php", {
                     method: "POST",
                     body: formData,
                 });
@@ -253,7 +248,7 @@ function startLiveIndicatorUpdate() {
 
 async function loadImages() {
     try {
-        const res = await fetch("/estu/process/homeImages.php?action=get");
+        const res = await fetch(BASE_URL + "/process/homeImages.php?action=get");
         const data = await res.json();
         
         console.log('Raw data from API:', data);
@@ -322,7 +317,6 @@ function renderImages() {
     
     if (!imagesContainer) {
         console.error('imagesContainer is null! Trying to get from DOM...');
-        // Fallback: coba ambil langsung dari DOM
         imagesContainer = document.getElementById("imagesContainer");
         if (!imagesContainer) {
             console.error('imagesContainer still not found!');
@@ -439,7 +433,7 @@ async function confirmDelete() {
     formData.append("id", deleteId);
 
     try {
-        const res = await fetch("/estu/process/homeImages.php", {
+        const res = await fetch(BASE_URL + "/process/homeImages.php", {
             method: "POST",
             body: formData,
         });
@@ -543,7 +537,7 @@ async function saveOrderToServer() {
     });
 
     try {
-        const res = await fetch("/estu/process/homeImages.php", {
+        const res = await fetch(BASE_URL + "/process/homeImages.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

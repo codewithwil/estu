@@ -470,8 +470,20 @@ body {
     font-size: 2rem;
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
     transition: all 0.3s ease;
-    z-index: 100;
+    z-index: 10;
     text-decoration: none;
+}
+
+.wa-float {
+    pointer-events: none;
+}
+
+.wa-float i {
+    pointer-events: auto;
+}
+#filterContainer {
+    position: relative;
+    z-index: 999;
 }
 
 .wa-float:hover {

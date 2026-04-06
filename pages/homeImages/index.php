@@ -126,6 +126,9 @@ checkAuth();
         </div>
     </div>
 
+    <script>
+        const BASE_URL = "<?= base_url() ?>";
+    </script>
     <script src="<?= asset('js/homeImages/main.js') ?>"></script>
 </body>
 </html>

@@ -314,6 +314,10 @@ checkAuth();
         </div>
     </div>
 
+    <script>
+        const BASE_URL = "<?= base_url() ?>";
+        const ASSET_URL = "<?= asset() ?>";
+    </script>
     <script src="<?= asset('js/portofolio/main.js') ?>"></script>
 </body>
 </html>

@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/helper/route.php';
+require_once __DIR__ . '/functions/contact.php';
+$contactData    = getContact(); 
+$cleanNumber = preg_replace('/[^0-9]/', '', $contactData['whatsapp_number']); 
+$waMessage = rawurlencode("Hello ESTU, I'm interested in your Event Organizer Bali services");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/allPorto.css">
+    <link rel="stylesheet" href="<?= asset('css/allPorto.css') ?>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -72,13 +79,7 @@
             </p>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-up" id="filterContainer">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="exhibition">Exhibition</button>
-            <button class="filter-btn" data-filter="corporate">Corporate</button>
-            <button class="filter-btn" data-filter="festival">Festival</button>
-            <button class="filter-btn" data-filter="cultural">Cultural</button>
-        </div>
+        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-up" id="filterContainer"></div>
 
         <div class="portfolio-grid" id="portfolioGrid">
         </div>
@@ -130,7 +131,7 @@
                 <div class="flex flex-wrap gap-3 mb-8" id="modalTags"></div>
 
                 <div class="flex flex-wrap gap-3 items-center">
-                    <a href="https://wa.me/6281572000039?text=Hello%20ESTU ,%20I'm%20interested%20in%20similar%20event" 
+                    <a href="https://wa.me/<?= $cleanNumber ?>?text=<?= $waMessage ?>" 
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-black font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-[#128C7E] hover:text-white transition-all duration-300">
@@ -154,7 +155,7 @@
     </div>
 </div>
 
-    <a href="https://wa.me/6281572000039?text=Hello%20ESTU,%20I'm%20interested%20in%20your%20Event%20Organizer%20Bali%20services" 
+    <a href="https://wa.me/<?= $cleanNumber ?>?text=<?= $waMessage ?>"  
        target="_blank" 
        rel="noopener noreferrer"
        class="wa-float" 
@@ -165,13 +166,16 @@
     <footer class="border-t border-white/10 py-8 px-4 md:px-8 lg:px-16">
         <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
             <div class="flex items-center gap-2">
-                <span class="text-xl font-display font-bold text-white">ESTU</span>
-                <span class="tracking-wider">EVENT ORGANIZER BALI</span>
+                <span class="text-xl font-display font-bold text-white"><?= htmlspecialchars($contactData['brand_name']) ?></span>
+                <span class="tracking-wider"><?= htmlspecialchars($contactData['brand_tagline']) ?></span>
             </div>
-            <div class="tracking-wider">&copy; 2024 ESTU. All rights reserved.</div>
+            <div class="tracking-wider"><?= htmlspecialchars($contactData['copyright_text']) ?></div>
         </div>
     </footer>
-
-    <script src="assets/js/allPorto.js"></script>
+    
+    <script>
+        const BASE_URL = "<?= base_url() ?>";;
+    </script>
+    <script src="<?= asset('js/allPorto.js') ?>"></script>
 </body>
 </html>

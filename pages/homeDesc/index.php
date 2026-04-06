@@ -157,7 +157,10 @@ checkAuth();
             <p id="toastMessage">Perubahan berhasil disimpan</p>
         </div>
     </div>
-
+    
+    <script>
+        const BASE_URL = "<?= base_url() ?>";
+    </script>
     <script src="<?= asset('js/homeDesc/main.js') ?>"></script>
 </body>
 </html>

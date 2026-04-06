@@ -2,12 +2,12 @@ let originalData = {};
 
 const API = {
   async getHomeContent() {
-    const res = await fetch("/estu/process/homeDesc.php?action=get");
+    const res = await fetch(BASE_URL + "/process/homeDesc.php?action=get");
     return await res.json();
   },
 
   async saveHomeContent(data) {
-    return fetch("/estu/process/homeDesc.php?action=save", {
+    return fetch(BASE_URL + "/process/homeDesc.php?action=save", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

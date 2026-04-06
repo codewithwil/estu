@@ -352,7 +352,7 @@ async function saveServicesData() {
     };
 
     try {
-        const res = await fetch('/estu/process/services.php?action=save', {
+        const res = await fetch(BASE_URL + '/process/services.php?action=save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -375,7 +375,7 @@ async function saveServicesData() {
 
 async function loadServicesData() {
     try {
-        const res = await fetch('/estu/process/services.php?action=get');
+        const res = await fetch(BASE_URL + '/process/services.php?action=get');
         const data = await res.json();
 
         if (!data) return;

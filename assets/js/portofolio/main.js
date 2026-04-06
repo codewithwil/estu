@@ -7,28 +7,27 @@ const portfolioPreviewBadge = document.getElementById("portfolioPreviewBadge");
 
 const API = {
   async getPortfolios() {
-    const res = await fetch("/estu/process/portofolio.php?action=get");
+    const res = await fetch(BASE_URL + "/process/portofolio.php?action=get");
     const data = await res.json();
-    console.log("API RESPONSE:", data);
     return data;
   },
   
   async createPortfolio(data) {
-    return fetch("/estu/process/portofolio.php?action=create", {
+    return fetch(BASE_URL + "/process/portofolio.php?action=create", {
       method: "POST",
       body: data,
     });
   },
 
   async updatePortfolio(data) {
-    return fetch("/estu/process/portofolio.php?action=update", {
+    return fetch(BASE_URL + "/process/portofolio.php?action=update", {
       method: "POST",
       body: data,
     });
   },
 
   async deletePortfolio(id) {
-    return fetch("/estu/process/portofolio.php?action=delete", {
+    return fetch(BASE_URL + "/process/portofolio.php?action=delete", {
       method: "POST",
       body: new URLSearchParams({ id }),
     });
@@ -146,9 +145,9 @@ function getImagePath(portfolio) {
     return portfolio.filepath;
   }
   if (portfolio.filename) {
-    return `/estu/assets/images/portfolio/${portfolio.filename}`;
+    return `${ASSET_URL}/assets/images/portfolio/${portfolio.filename}`;
   }
-  return '/estu/assets/images/placeholder.jpg';
+  return `${ASSET_URL}/assets/images/placeholder.jpg`;
 }
 
 function renderPortfolioPreview() {
