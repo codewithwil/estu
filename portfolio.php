@@ -37,11 +37,11 @@
         <a href="index.html" class="text-2xl font-display font-bold tracking-tight">ESTU</a>
         
         <div class="nav-links hidden md:flex gap-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="index.html#about" class="nav-link">About</a>
-            <a href="index.html#services" class="nav-link">Services</a>
-            <a href="portfolio.html" class="nav-link">Portfolio</a>
-            <a href="index.html#contact" class="nav-link">Contact</a>
+            <a href="/estu" class="nav-link">Home</a>
+            <a href="/estu#about" class="nav-link">About</a>
+            <a href="/estu#services" class="nav-link">Services</a>
+            <a href="/estu#portfolio" class="nav-link">Portfolio</a>
+            <a href="/estu#contact" class="nav-link">Contact</a>
         </div>
 
         <button class="mobile-menu-btn" onclick="mobileMenu.toggle()" aria-label="Toggle menu">

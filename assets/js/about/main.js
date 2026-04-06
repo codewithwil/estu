@@ -175,7 +175,7 @@ async function saveAboutData() {
     if (file) formData.append('image', file);
 
     try {
-        const res = await fetch('/estu/process/about.php?action=save', {
+        const res = await fetch(BASE_URL + 'process/about.php?action=save', {
             method: 'POST',
             body: formData
         });
@@ -197,7 +197,7 @@ async function saveAboutData() {
 
 async function loadAboutData() {
     try {
-        const res = await fetch('/estu/process/about.php?action=get');
+        const res = await fetch(BASE_URL + '/process/about.php?action=get');
         const data = await res.json();
 
         setVal('sectionLabel', data.sectionLabel);

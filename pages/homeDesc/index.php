@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../../functions/auth.php';
+require_once __DIR__ . '../../../helper/route.php';
+checkAuth();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,8 +12,8 @@
     <title>Home Description - ESTU CMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/estu/assets/css/toast.css">
-    <link rel="stylesheet" href="/estu/assets/css/homeDesc/main.css">
+    <link rel="stylesheet" href="<?= asset('css/toast.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/homeDesc/main.css') ?>">
 </head>
 <body>
     <div class="dashboard">
@@ -152,6 +158,6 @@
         </div>
     </div>
 
-    <script src="/estu/assets/js/homeDesc/main.js"></script>
+    <script src="<?= asset('js/homeDesc/main.js') ?>"></script>
 </body>
 </html>

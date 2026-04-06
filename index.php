@@ -36,8 +36,16 @@ switch ($url) {
         require 'pages/service/index.php';
         break;
 
+    case 'portofolio':
+        require 'pages/portofolio/index.php';
+        break;
+
     case 'client':
         require 'pages/client/index.php';
+        break;
+
+    case 'contact':
+        require 'pages/contact/index.php';
         break;
 
     case 'logout':

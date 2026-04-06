@@ -438,7 +438,9 @@
                     <h2>Masuk ke Akun</h2>
                     <p>Silakan masukkan kredensial Anda</p>
                 </div>
-
+                <?php if (isset($_GET['blocked'])): ?>
+                    <p style="color:red;">Terlalu banyak percobaan. Coba lagi 24 jam.</p>
+                <?php endif; ?>
                 <?php if (isset($_GET['error'])): ?>
                     <p style="color:red;">Email atau password salah</p>
                 <?php endif; ?>
@@ -490,7 +492,7 @@
                 <div class="divider">
                     <span>atau</span>
                 </div>
-
+<!-- 
                 <div class="social-login">
                     <button class="social-btn" onclick="socialLogin('google')">
                         <svg width="16" height="16" viewBox="0 0 24 24">
@@ -507,10 +509,10 @@
                         </svg>
                         GitHub
                     </button>
-                </div>
+                </div> -->
 
                 <div class="signup">
-                    Belum punya akun?<a href="#">Daftar sekarang</a>
+                    Belum punya akun?<a href="#">Silahkan hubungi admin</a>
                 </div>
             </div>
         </div>

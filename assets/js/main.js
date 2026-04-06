@@ -1,49 +1,131 @@
 const App = {
-    init() {
+    async init() {
         this.initStarfield();
         this.initScrollEffects();
         this.initSmoothScroll();
+        await this.renderClients();
         this.renderClients();
         this.initSecurity();
+        this.renderServices();
     },
 
-    initSecurity() {
-        document.addEventListener("contextmenu", e => e.preventDefault());
-        document.addEventListener("selectstart", e => e.preventDefault());
-        document.addEventListener("copy", e => e.preventDefault());
-        document.addEventListener("dragstart", e => {
-            if (e.target.tagName === "IMG") {
-                e.preventDefault();
-            }
-        });
-        document.addEventListener("keydown", function (e) {
+renderServices() {
+    // 1. Ambil data dari window atau default
+    const data = window.initialServicesData || {
+        services: [],
+        titleLine1: 'INTEGRATED EVENT',
+        titleLine2: 'SOLUTIONS',
+        sectionDesc: 'End-to-end event organizer Bali services...'
+    };
 
-            if (
-                e.key === "F12" ||
-                (e.ctrlKey && e.shiftKey && e.key === "I") ||
-                (e.ctrlKey && e.shiftKey && e.key === "J") ||
-                (e.ctrlKey && e.shiftKey && e.key === "C") ||
-                (e.ctrlKey && e.key === "U") ||
-                (e.ctrlKey && e.key === "S")
-            ) {
-                e.preventDefault();
-            }
+    // Gunakan copy agar tidak merusak data asli saat reordering
+    let services = [...(data.services || [])];
+    const grid = document.querySelector('.services-grid');
+    
+    if (!grid || services.length === 0) return;
 
-        });
+    // 2. Update Header Text
+    const titleEl = grid.closest('section')?.querySelector('.section-title');
+    if (titleEl) {
+        titleEl.innerHTML = `${data.titleLine1 || 'INTEGRATED EVENT'}<br>${data.titleLine2 || 'SOLUTIONS'}`;
+    }
+    
+    const descEl = grid.closest('section')?.querySelector('.section-desc');
+    if (descEl) {
+        descEl.innerHTML = data.sectionDesc || '';
+    }
 
-            setInterval(() => {
-                const threshold = 160;
+    // 3. Logika Perhitungan
+    const totalServices = services.length;
+    // Helper untuk cek wide (karena di DB/JS bisa boolean atau string '1')
+    const isWide = (val) => val === true || val === 1 || val === '1';
+    const wideCount = services.filter(s => isWide(s.isWide)).length;
 
-                if (
-                    window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold
-                ) {
-                    document.body.style.filter = "blur(10px)";
-                } else {
-                    document.body.style.filter = "";
-                }
-            }, 1000);
-    },
+    // 4. Logika Reordering (Sama dengan Preview/PHP)
+    // Agar layout simetris secara visual di grid
+    if (totalServices === 5 && wideCount === 1) {
+        const wideIndex = services.findIndex(s => isWide(s.isWide));
+        if (wideIndex !== -1 && wideIndex !== 3) {
+            const [wideCard] = services.splice(wideIndex, 1);
+            services.splice(3, 0, wideCard); // Pindahkan ke index 3 (posisi ke-4)
+        }
+    } 
+    else if (totalServices === 5 && wideCount === 2) {
+        // Taruh wide cards di urutan terakhir agar mengisi baris bawah
+        services.sort((a, b) => isWide(a.isWide) - isWide(b.isWide));
+    }
+
+    // 5. Penentuan Grid Class (Sama persis dengan Preview)
+    let gridClass = '';
+    if (totalServices === 5) {
+        if (wideCount === 2) gridClass = 'layout-5-2wide';
+        else if (wideCount === 1) gridClass = 'layout-5-1wide';
+        else if (wideCount === 3) gridClass = 'layout-5-3wide';
+    } else if (totalServices === 4) {
+        if (wideCount === 2) gridClass = 'layout-4-2wide';
+        else if (wideCount === 1) gridClass = 'layout-4-1wide';
+    } else if (totalServices === 6) {
+        if (wideCount === 2) gridClass = 'layout-6-2wide';
+        else if (wideCount === 3) gridClass = 'layout-6-3wide';
+    }
+
+    // 6. Apply Attributes & Classes
+    grid.className = `services-grid ${gridClass}`;
+    grid.setAttribute('data-count', totalServices);
+    grid.setAttribute('data-wide', wideCount);
+
+    // 7. Render HTML
+    grid.innerHTML = services.map((service, index) => {
+        const wideStatus = isWide(service.isWide);
+        return `
+            <article class="service-card ${wideStatus ? 'wide' : ''}" data-index="${index}">
+                <div class="service-icon">
+                    <i class="fas ${service.icon || 'fa-star'}"></i>
+                </div>
+                <h3>${service.title || 'Untitled'}</h3>
+                <p>${service.description || ''}</p>
+            </article>
+        `;
+    }).join('');
+},
+
+    // initSecurity() {
+    //     document.addEventListener("contextmenu", e => e.preventDefault());
+    //     document.addEventListener("selectstart", e => e.preventDefault());
+    //     document.addEventListener("copy", e => e.preventDefault());
+    //     document.addEventListener("dragstart", e => {
+    //         if (e.target.tagName === "IMG") {
+    //             e.preventDefault();
+    //         }
+    //     });
+    //     document.addEventListener("keydown", function (e) {
+
+    //         if (
+    //             e.key === "F12" ||
+    //             (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    //             (e.ctrlKey && e.shiftKey && e.key === "J") ||
+    //             (e.ctrlKey && e.shiftKey && e.key === "C") ||
+    //             (e.ctrlKey && e.key === "U") ||
+    //             (e.ctrlKey && e.key === "S")
+    //         ) {
+    //             e.preventDefault();
+    //         }
+
+    //     });
+
+    //         setInterval(() => {
+    //             const threshold = 160;
+
+    //             if (
+    //                 window.outerWidth - window.innerWidth > threshold ||
+    //                 window.outerHeight - window.innerHeight > threshold
+    //             ) {
+    //                 document.body.style.filter = "blur(10px)";
+    //             } else {
+    //                 document.body.style.filter = "";
+    //             }
+    //         }, 1000);
+    // },
 
     initStarfield() {
         const container = document.getElementById('starfield');
@@ -107,41 +189,31 @@ const App = {
         });
     },
 
-    renderClients() {
-        const clients = [
-            { name: 'Agung Automall', img: 'agung.png' },
-            { name: 'Angker', img: 'angker.png' },
-            { name: 'Astra International', img: 'astra.png' },
-            { name: 'Auto 2000', img: 'auto.png' },
-            { name: 'Bali Tourism', img: 'bali.png' },
-            { name: 'Bali Beach Run', img: 'beachbali.png' },
-            { name: 'Fitness First', img: 'fitness.png' },
-            { name: 'Hardy\'s', img: 'hardy.png' },
-            { name: 'ISS', img: 'iss.svg' },
-            { name: 'Jasindo Insurance', img: 'jasindo.png' },
-            { name: 'Indonesia MDG Awards', img: 'mdg.png' },
-            { name: 'OJK', img: 'ojk.png' },
-            { name: 'Pertamina', img: 'pertamina.png' },
-            { name: 'Pemuda Pancasila', img: 'pp.png' },
-            { name: 'Pucuk Harum', img: 'pucuk.png' },
-            { name: 'Jasa Raharja', img: 'raharja.png' },
-            { name: 'Suzuki', img: 'suzuki.png' },
-            { name: 'Telkomsel', img: 'telkomsel.png' },
-            { name: 'Tough Mudder', img: 'tough.png' },
-            { name: 'Tri', img: 'tri.png' },
-            { name: 'Yamaha', img: 'yamaha.png' }
-        ];
+    async renderClients() {
+            const grid = document.getElementById('clientsGrid');
+            if (!grid) return;
 
-        const grid = document.getElementById('clientsGrid');
-        if (!grid) return;
+            try {
+                const response = await fetch("process/client.php?action=get");
+                const clients = await response.json();
 
-        grid.innerHTML = clients.map(client => `
-            <div class="client-logo-item" title="${client.name}">
-                <img src="./assets/images/client/${client.img}" alt="${client.name}" loading="lazy">
-            </div>
-        `).join('');
-    }
-};
+                if (!clients || clients.length === 0) {
+                    grid.innerHTML = '<p>No clients found</p>';
+                    return;
+                }
+
+                grid.innerHTML = clients.map(client => `
+                    <div class="client-logo-item" title="${client.name}">
+                        <img src="./assets/images/client/${client.logo}" alt="${client.name}" loading="lazy">
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error("Gagal mengambil data client:", error);
+                grid.innerHTML = '<p>Failed to load clients.</p>';
+            }
+        }
+    };
 
 const mobileMenu = {
     toggle() {

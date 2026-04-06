@@ -1,46 +1,3 @@
-let servicesData = {
-    titleLine1: 'INTEGRATED EVENT',
-    titleLine2: 'SOLUTIONS',
-    sectionDesc: 'End-to-end event organizer Bali services ensuring every detail of your event is perfect.',
-    services: [
-        {
-            id: 1,
-            icon: 'fa-lightbulb',
-            title: 'CONCEPT DEVELOPMENT',
-            description: 'Designing unique concepts that reflect your brand identity with authentic Balinese cultural nuances.',
-            isWide: true
-        },
-        {
-            id: 2,
-            icon: 'fa-tasks',
-            title: 'EVENT MANAGEMENT',
-            description: 'Precision logistics management, vendor coordination, and timeline control for seamless execution.',
-            isWide: true
-        },
-        {
-            id: 3,
-            icon: 'fa-bullhorn',
-            title: 'DIGITAL MARKETING',
-            description: 'Strategic digital communication to maximize reach and engagement for your Bali events.',
-            isWide: true
-        },
-        {
-            id: 4,
-            icon: 'fa-store',
-            title: 'EXHIBITION DESIGN',
-            description: 'Eye-catching and interactive booth designs that stand out at any trade show or exhibition.',
-            isWide: false
-        },
-        {
-            id: 5,
-            icon: 'fa-video',
-            title: 'MEDIA & LIVE STREAMING',
-            description: 'Broadcast-quality video production and professional live streaming services for hybrid events.',
-            isWide: false
-        }
-    ]
-};
-
 let nextId = 6;
 const MAX_SERVICES = 6; 
 const MAX_WIDE_CARDS = 3; 
@@ -69,8 +26,8 @@ const availableIcons = [
     'fa-star', 'fa-check-circle', 'fa-arrow-up'
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadServicesData();
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadServicesData();
     setupEventListeners();
     initRichEditors();
     renderServicesForm();
@@ -328,10 +285,45 @@ function updatePreview() {
 
     const grid = document.getElementById('servicesPreviewGrid');
     
-    grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    // HAPUS inline style yang nge-overwrite
+    grid.style.gridTemplateColumns = '';
     
-    grid.innerHTML = servicesData.services.map(service => `
-        <article class="preview-service-card ${service.isWide ? 'wide' : ''}">
+    // Hitung grid class yang sama PERSIS seperti PHP
+    const totalServices = servicesData.services.length;
+    const wideCount = servicesData.services.filter(s => s.isWide).length;
+    
+    let gridClass = '';
+    
+    if (totalServices === 5) {
+        if (wideCount === 2) {
+            gridClass = 'layout-5-2wide';
+        } else if (wideCount === 1) {
+            gridClass = 'layout-5-1wide';
+        } else if (wideCount === 3) {
+            gridClass = 'layout-5-3wide';
+        }
+    } else if (totalServices === 4) {
+        if (wideCount === 2) {
+            gridClass = 'layout-4-2wide';
+        } else if (wideCount === 1) {
+            gridClass = 'layout-4-1wide';
+        }
+    } else if (totalServices === 6) {
+        if (wideCount === 2) {
+            gridClass = 'layout-6-2wide';
+        } else if (wideCount === 3) {
+            gridClass = 'layout-6-3wide';
+        }
+    }
+    
+    // Set BOTH class dan data attributes
+    grid.className = 'services-preview-grid ' + gridClass;
+    grid.setAttribute('data-count', totalServices);
+    grid.setAttribute('data-wide', wideCount);
+    
+    // Render cards
+    grid.innerHTML = servicesData.services.map((service, index) => `
+        <article class="preview-service-card ${service.isWide ? 'wide' : ''}" data-index="${index}">
             <div class="preview-service-icon">
                 <i class="fas ${service.icon}"></i>
             </div>
@@ -339,6 +331,16 @@ function updatePreview() {
             <p class="preview-service-desc">${service.description || ''}</p>
         </article>
     `).join('');
+    
+    // DEBUG - hapus setelah fix
+    console.log('Preview Grid Updated:', {
+        totalServices,
+        wideCount,
+        gridClass,
+        classes: grid.className,
+        dataCount: grid.getAttribute('data-count'),
+        dataWide: grid.getAttribute('data-wide')
+    });
 }
 
 async function saveServicesData() {
@@ -350,20 +352,42 @@ async function saveServicesData() {
     };
 
     try {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        showToast('success', 'Berhasil', 'Data Services berhasil disimpan');
-        console.log('Saved data:', data);
-    } catch (error) {
-        showToast('error', 'Error', 'Gagal menyimpan data');
+        const res = await fetch('/estu/process/services.php?action=save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+            showToast('success', 'Berhasil', 'Data Services berhasil disimpan');
+        } else {
+            showToast('error', 'Error', 'Gagal menyimpan data');
+        }
+
+    } catch (err) {
+        showToast('error', 'Error', 'Server error');
     }
 }
 
 async function loadServicesData() {
     try {
-        document.getElementById('sectionDesc').innerHTML = servicesData.sectionDesc;
-        console.log('Services data loaded');
-    } catch (error) {
-        console.error('Load error:', error);
+        const res = await fetch('/estu/process/services.php?action=get');
+        const data = await res.json();
+
+        if (!data) return;
+
+        servicesData = data;
+
+        document.getElementById('titleLine1').value = data.titleLine1;
+        document.getElementById('titleLine2').value = data.titleLine2;
+        document.getElementById('sectionDesc').innerHTML = data.sectionDesc;
+
+    } catch (err) {
+        console.error(err);
     }
 }
 

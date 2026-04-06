@@ -7,26 +7,26 @@ const clientsPreviewBadge = document.getElementById("clientsPreviewBadge");
 
 const API = {
   async getClients() {
-    const res = await fetch("/estu/process/client.php?action=get");
+    const res = await fetch(BASE_URL + "process/client.php?action=get");
     return await res.json();
   },
 
   async createClient(data) {
-    return fetch("/estu/process/client.php?action=create", {
+    return fetch(BASE_URL + "process/client.php?action=create", {
       method: "POST",
       body: data,
     });
   },
 
   async updateClient(data) {
-    return fetch("/estu/process/client.php?action=update", {
+    return fetch(BASE_URL + "process/client.php?action=update", {
       method: "POST",
       body: data,
     });
   },
 
   async deleteClient(id) {
-    return fetch("/estu/process/client.php?action=delete", {
+    return fetch(BASE_URL + "process/client.php?action=delete", {
       method: "POST",
       body: new URLSearchParams({ id }),
     });

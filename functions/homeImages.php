@@ -27,7 +27,6 @@ function getHomeSliders() {
     return $data;
 }
 
-
 // =========================
 // UPLOAD FILE
 // =========================
