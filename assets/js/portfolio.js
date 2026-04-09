@@ -19,7 +19,7 @@ const portfolio = {
 
     getImageUrl(item) {
         if (item.filepath && item.filepath.startsWith("/")) {
-            return item.filepath; // langsung pakai
+            return item.filepath; 
         }
         return `${ASSET_URL}/images/placeholder.jpg`;
     },

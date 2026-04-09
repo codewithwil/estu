@@ -280,12 +280,44 @@
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     background: rgba(255,255,255,0.1);
     margin-top: 4rem;
+    /* Default 3 kolom */
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
 }
 
+
+.service-card.col-span-2 {
+    grid-column: span 2;
+}
+
+.service-card.col-span-1 {
+    grid-column: span 1;
+}
+
+.layout-5-w1 {
+    /* 5 items, 1 wide - handled by inline styles */
+}
+
+.layout-5-w2 {
+    /* 5 items, 2 wide */
+}
+
+.layout-4-w1 {
+    /* 4 items, 1 wide */
+}
+
+.layout-4-w2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.layout-6-w2 {
+    /* 6 items, 2 wide */
+}
+
+/* Service Card Base */
 .service-card {
     background: #050505;
     padding: 3rem;
@@ -293,6 +325,10 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    min-height: 200px;
+}
+.service-card.wide {
+    /* Grid area handled by inline style */
 }
 
 .service-card::before {
@@ -361,6 +397,10 @@
     
     .service-card {
         padding: 2rem;
+    }
+    .service-card.col-span-2,
+    .service-card.col-span-1 {
+        grid-column: span 1;
     }
 }
 

@@ -13,7 +13,7 @@ checkAuth();
 $heroImages     = getHomeSliders();
 $heroContent    = getHomeContent();
 $aboutData      = getAbout(); 
-$services       = getServices();
+$serviceData       = getServices();
 $clientData      = getClients(); 
 $contactData    = getContact(); 
 
@@ -27,7 +27,7 @@ $totalImages = count($heroImages);
 $totalDuration = $totalImages * $slideDuration;
 $heroContent = array_merge(array_filter($heroContent));
 $aboutData = array_merge(array_filter($aboutData, fn($v) => $v !== null));
-$services = $servicesData['services'] ?? [];
+$services = $serviceData['services'] ?? [];
 $totalServices = count($services);
 $contactData = array_merge(array_filter($contactData, fn($v) => $v !== null));
 
@@ -225,25 +225,25 @@ $waMessage = rawurlencode("Hello ESTU, I'm interested in your Event Organizer Ba
         <div class="text-center mb-16">
             <span class="section-label">Our Services</span>
             <h2 class="section-title">
-                <?= htmlspecialchars($servicesData['titleLine1'] ?? 'INTEGRATED EVENT') ?><br>
-                <?= htmlspecialchars($servicesData['titleLine2'] ?? 'SOLUTIONS') ?>
+                <?= htmlspecialchars($serviceData['titleLine1'] ?? 'INTEGRATED EVENT') ?><br>
+                <?= htmlspecialchars($serviceData['titleLine2'] ?? 'SOLUTIONS') ?>
             </h2>
             <p class="text-gray-400 mt-6 max-w-2xl mx-auto font-light">
-                <?= htmlspecialchars($servicesData['sectionDesc'] ?? 'End-to-end event organizer Bali services...') ?>
+                <?= htmlspecialchars($serviceData['sectionDesc'] ?? 'End-to-end event organizer Bali services...') ?>
             </p>
         </div>
         
         <div class="services-grid" data-count="<?= $totalServices ?>">
-            <?php foreach ($services as $index => $service): 
-                $isWide = $service['isWide'] ?? false;
+            <?php foreach ($services as $index => $s):
+                $isWide = $s['isWide'] ?? false;
                 $class = $isWide ? 'service-card wide' : 'service-card';
             ?>
                 <article class="<?= $class ?>">
                     <div class="service-icon">
-                        <i class="fas <?= htmlspecialchars($service['icon'] ?? 'fa-star') ?>"></i>
+                        <i class="fas <?= htmlspecialchars($s['icon'] ?? 'fa-star') ?>"></i>
                     </div>
-                    <h3><?= htmlspecialchars($service['title']) ?></h3>
-                    <p><?= htmlspecialchars($service['description']) ?></p>
+                    <h3><?= htmlspecialchars($s['title']) ?></h3>
+                    <p><?= htmlspecialchars($s['description']) ?></p>
                 </article>
             <?php endforeach; ?>
         </div>
@@ -365,6 +365,18 @@ $waMessage = rawurlencode("Hello ESTU, I'm interested in your Event Organizer Ba
             window.initialHeroContent   = <?= json_encode($heroContent) ?>; 
             window.initialAboutData     = <?= json_encode($aboutData) ?>; 
             window.initialContactData   = <?= json_encode($contactData) ?>; 
+            window.initialServicesData  = <?= json_encode([
+        'services' => $services,
+        'titleLine1' => $serviceData['titleLine1'] ?? 'INTEGRATED EVENT',
+        'titleLine2' => $serviceData['titleLine2'] ?? 'SOLUTIONS',
+        'sectionDesc' => $serviceData['sectionDesc'] ?? 'End-to-end event organizer Bali services...'
+    ]) ?>;
+    window.initialContactData   = <?= json_encode($contactData) ?>; 
+    window.heroConfig = {
+        slideDuration: <?= $slideDuration ?>,
+        totalDuration: <?= $totalDuration ?>,
+        animations: <?= json_encode($animations) ?>
+    };
             window.heroConfig = {
                 slideDuration: <?= $slideDuration ?>,
                 totalDuration: <?= $totalDuration ?>,

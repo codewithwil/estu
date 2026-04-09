@@ -75,6 +75,9 @@
 }
 
 .nav-subitem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 12px;
     font-size: 13px;
     color: var(--gray-400);
@@ -82,15 +85,52 @@
     border-radius: 6px;
     transition: all 0.2s;
     margin-bottom: 2px;
+    margin-left: 32px;
+    margin-right: 8px;
 }
+.nav-subitem i {
+    width: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gray-500);
+}
+
 
 .nav-subitem:hover {
     background: var(--gray-800);
     color: var(--white);
 }
 
+.nav-subitem:hover i {
+    color: var(--white);
+}
+
 .nav-subitem.active {
     background: var(--gray-700);
+    color: var(--white);
+}
+
+.nav-subitem-primary {
+    color: #10b981;
+    font-weight: 500;
+}
+
+.nav-subitem-primary i {
+    color: #10b981;
+}
+
+.nav-subitem-primary:hover {
+    background: rgba(16, 185, 129, 0.1);
+    color: #34d399;
+}
+
+.nav-subitem .fa-file-word { color: #2b579a; }
+.nav-subitem .fa-file-excel { color: #217346; }
+.nav-subitem .fa-file-powerpoint { color: #d24726; }
+
+.nav-subitem:hover .fa-file-word,
+.nav-subitem:hover .fa-file-excel,
+.nav-subitem:hover .fa-file-powerpoint {
     color: var(--white);
 }
 
@@ -309,4 +349,29 @@
     height: 1px;
     background: var(--gray-700);
     margin: 4px 0;
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--gray-700);
+    margin: 8px 12px;
 }

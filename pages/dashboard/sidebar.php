@@ -1,4 +1,5 @@
-<meta timestamp="2026-04-03 23:40" />
+<meta timestamp="2026-04-08 09:20" />
+
 <?php
 $current = $_GET['url'] ?? 'dashboard';
 require_once __DIR__ . '../../../helper/route.php';
@@ -34,6 +35,35 @@ require_once __DIR__ . '../../../helper/route.php';
                     <a href="<?= url('portofolio') ?>" class="nav-subitem">Portofolio</a>
                     <a href="<?= url('client') ?>" class="nav-subitem">Client</a>
                     <a href="<?= url('contact') ?>" class="nav-subitem">Contact</a>
+                </div>
+            </div>
+
+            <!-- NEW: Management File Dropdown -->
+            <div class="nav-dropdown">
+                <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Management File</span>
+                    <span class="badge badge-new">NEW</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+
+                <div class="dropdown-menu">
+                    <a href="<?= url('fileManager') ?>" class="nav-subitem">
+                        <i class="fas fa-list"></i> Semua File
+                    </a>
+                    <a href="<?= url('file-manager?type=word') ?>" class="nav-subitem">
+                        <i class="fas fa-file-word"></i> Dokumen Word
+                    </a>
+                    <a href="<?= url('file-manager?type=excel') ?>" class="nav-subitem">
+                        <i class="fas fa-file-excel"></i> Spreadsheet Excel
+                    </a>
+                    <a href="<?= url('file-manager?type=powerpoint') ?>" class="nav-subitem">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi PPT
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="<?= url('file-manager?action=upload') ?>" class="nav-subitem nav-subitem-primary">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload File
+                    </a>
                 </div>
             </div>
         </div>

@@ -9,123 +9,131 @@ const App = {
         this.renderServices();
     },
 
-renderServices() {
-    // 1. Ambil data dari window atau default
-    const data = window.initialServicesData || {
-        services: [],
-        titleLine1: 'INTEGRATED EVENT',
-        titleLine2: 'SOLUTIONS',
-        sectionDesc: 'End-to-end event organizer Bali services...'
-    };
+    renderServices() {
+        const data = window.initialServicesData || {
+            services: [],
+            titleLine1: 'INTEGRATED EVENT',
+            titleLine2: 'SOLUTIONS',
+            sectionDesc: 'End-to-end event organizer Bali services...'
+        };
 
-    // Gunakan copy agar tidak merusak data asli saat reordering
-    let services = [...(data.services || [])];
-    const grid = document.querySelector('.services-grid');
-    
-    if (!grid || services.length === 0) return;
-
-    // 2. Update Header Text
-    const titleEl = grid.closest('section')?.querySelector('.section-title');
-    if (titleEl) {
-        titleEl.innerHTML = `${data.titleLine1 || 'INTEGRATED EVENT'}<br>${data.titleLine2 || 'SOLUTIONS'}`;
-    }
-    
-    const descEl = grid.closest('section')?.querySelector('.section-desc');
-    if (descEl) {
-        descEl.innerHTML = data.sectionDesc || '';
-    }
-
-    // 3. Logika Perhitungan
-    const totalServices = services.length;
-    // Helper untuk cek wide (karena di DB/JS bisa boolean atau string '1')
-    const isWide = (val) => val === true || val === 1 || val === '1';
-    const wideCount = services.filter(s => isWide(s.isWide)).length;
-
-    // 4. Logika Reordering (Sama dengan Preview/PHP)
-    // Agar layout simetris secara visual di grid
-    if (totalServices === 5 && wideCount === 1) {
-        const wideIndex = services.findIndex(s => isWide(s.isWide));
-        if (wideIndex !== -1 && wideIndex !== 3) {
-            const [wideCard] = services.splice(wideIndex, 1);
-            services.splice(3, 0, wideCard); // Pindahkan ke index 3 (posisi ke-4)
+        let services = [...(data.services || [])];
+        const grid = document.querySelector('.services-grid');
+        
+        if (!grid || services.length === 0) {
+            console.log('Services grid not found or empty:', grid, services);
+            return;
         }
-    } 
-    else if (totalServices === 5 && wideCount === 2) {
-        // Taruh wide cards di urutan terakhir agar mengisi baris bawah
-        services.sort((a, b) => isWide(a.isWide) - isWide(b.isWide));
-    }
 
-    // 5. Penentuan Grid Class (Sama persis dengan Preview)
-    let gridClass = '';
-    if (totalServices === 5) {
-        if (wideCount === 2) gridClass = 'layout-5-2wide';
-        else if (wideCount === 1) gridClass = 'layout-5-1wide';
-        else if (wideCount === 3) gridClass = 'layout-5-3wide';
-    } else if (totalServices === 4) {
-        if (wideCount === 2) gridClass = 'layout-4-2wide';
-        else if (wideCount === 1) gridClass = 'layout-4-1wide';
-    } else if (totalServices === 6) {
-        if (wideCount === 2) gridClass = 'layout-6-2wide';
-        else if (wideCount === 3) gridClass = 'layout-6-3wide';
-    }
+        const section = document.getElementById('services');
+        const titleEl = section?.querySelector('.section-title');
+        if (titleEl) {
+            titleEl.innerHTML = `${data.titleLine1 || 'INTEGRATED EVENT'}<br>${data.titleLine2 || 'SOLUTIONS'}`;
+        }
+        
+        const descEl = section?.querySelector('p.text-gray-400');
+        if (descEl) {
+            descEl.textContent = data.sectionDesc || '';
+        }
 
-    // 6. Apply Attributes & Classes
-    grid.className = `services-grid ${gridClass}`;
-    grid.setAttribute('data-count', totalServices);
-    grid.setAttribute('data-wide', wideCount);
+        const isWide = (val) => val === true || val === 1 || val === '1' || val === 'true';
+        
+        const totalServices = services.length;
+        const wideCount     = services.filter(s => isWide(s.isWide)).length;
+        const layoutConfig  = this.calculateLayout(services, isWide);
+        
+        grid.className = `services-grid layout-${layoutConfig.type}`;
+        grid.setAttribute('data-count', totalServices);
+        grid.setAttribute('data-wide', wideCount);
+        grid.style.gridTemplateColumns = layoutConfig.columns;
 
-    // 7. Render HTML
-    grid.innerHTML = services.map((service, index) => {
-        const wideStatus = isWide(service.isWide);
-        return `
-            <article class="service-card ${wideStatus ? 'wide' : ''}" data-index="${index}">
-                <div class="service-icon">
-                    <i class="fas ${service.icon || 'fa-star'}"></i>
-                </div>
-                <h3>${service.title || 'Untitled'}</h3>
-                <p>${service.description || ''}</p>
-            </article>
-        `;
-    }).join('');
-},
+        grid.innerHTML = services.map((service, index) => {
+            const wideStatus = isWide(service.isWide);
+            const gridArea = layoutConfig.areas[index] || 'auto';
+            
+            return `
+                <article class="service-card ${wideStatus ? 'wide' : ''}" 
+                        data-index="${index}"
+                        style="grid-area: ${gridArea};">
+                    <div class="service-icon">
+                        <i class="fas ${service.icon || 'fa-star'}"></i>
+                    </div>
+                    <h3>${service.title || 'Untitled'}</h3>
+                    <p>${service.description || ''}</p>
+                </article>
+            `;
+        }).join('');
+    },
 
-    // initSecurity() {
-    //     document.addEventListener("contextmenu", e => e.preventDefault());
-    //     document.addEventListener("selectstart", e => e.preventDefault());
-    //     document.addEventListener("copy", e => e.preventDefault());
-    //     document.addEventListener("dragstart", e => {
-    //         if (e.target.tagName === "IMG") {
-    //             e.preventDefault();
-    //         }
-    //     });
-    //     document.addEventListener("keydown", function (e) {
+    calculateLayout(services, isWideFn) {
+        const total = services.length;
+        const wideIndices = services.map((s, i) => isWideFn(s.isWide) ? i : -1).filter(i => i !== -1);
+        const wideCount = wideIndices.length;
+        
+        const columns = 'repeat(3, 1fr)';
+        let areas = [];
+        let type = `${total}-w${wideCount}`;
 
-    //         if (
-    //             e.key === "F12" ||
-    //             (e.ctrlKey && e.shiftKey && e.key === "I") ||
-    //             (e.ctrlKey && e.shiftKey && e.key === "J") ||
-    //             (e.ctrlKey && e.shiftKey && e.key === "C") ||
-    //             (e.ctrlKey && e.key === "U") ||
-    //             (e.ctrlKey && e.key === "S")
-    //         ) {
-    //             e.preventDefault();
-    //         }
+        const makeArea = (rowStart, colStart, rowEnd, colEnd) => 
+            `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`;
 
-    //     });
+        let currentRow = 1;
+        let currentCol = 1;
+        
+        for (let i = 0; i < services.length; i++) {
+            const isWide = isWideFn(services[i].isWide);
+            const needCols = isWide ? 2 : 1;
+            
+            if (currentCol + needCols > 4) { 
+                currentRow++;
+                currentCol = 1;
+            }
+            
+            areas[i] = makeArea(currentRow, currentCol, currentRow + 1, currentCol + needCols);
+            
+            currentCol += needCols;
+        }
 
-    //         setInterval(() => {
-    //             const threshold = 160;
+        return { type, columns, areas };
+    },
 
-    //             if (
-    //                 window.outerWidth - window.innerWidth > threshold ||
-    //                 window.outerHeight - window.innerHeight > threshold
-    //             ) {
-    //                 document.body.style.filter = "blur(10px)";
-    //             } else {
-    //                 document.body.style.filter = "";
-    //             }
-    //         }, 1000);
-    // },
+    initSecurity() {
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("selectstart", e => e.preventDefault());
+        document.addEventListener("copy", e => e.preventDefault());
+        document.addEventListener("dragstart", e => {
+            if (e.target.tagName === "IMG") {
+                e.preventDefault();
+            }
+        });
+        document.addEventListener("keydown", function (e) {
+
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && e.key === "I") ||
+                (e.ctrlKey && e.shiftKey && e.key === "J") ||
+                (e.ctrlKey && e.shiftKey && e.key === "C") ||
+                (e.ctrlKey && e.key === "U") ||
+                (e.ctrlKey && e.key === "S")
+            ) {
+                e.preventDefault();
+            }
+
+        });
+
+            setInterval(() => {
+                const threshold = 160;
+
+                if (
+                    window.outerWidth - window.innerWidth > threshold ||
+                    window.outerHeight - window.innerHeight > threshold
+                ) {
+                    document.body.style.filter = "blur(10px)";
+                } else {
+                    document.body.style.filter = "";
+                }
+            }, 1000);
+    },
 
     initStarfield() {
         const container = document.getElementById('starfield');

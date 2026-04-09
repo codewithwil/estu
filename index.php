@@ -48,6 +48,10 @@ switch ($url) {
         require 'pages/contact/index.php';
         break;
 
+    case 'fileManager':
+        require 'pages/fileManager/index.php';
+        break;
+
     case 'logout':
         require 'logout.php';
         break;
