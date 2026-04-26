@@ -52,6 +52,10 @@ switch ($url) {
         require 'pages/fileManager/index.php';
         break;
 
+    case 'linkManager':
+        require 'pages/linkManager/index.php';
+        break;
+
     case 'logout':
         require 'logout.php';
         break;

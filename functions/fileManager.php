@@ -433,33 +433,6 @@ function formatFileSize($bytes) {
     return round($bytes, 2) . ' ' . $units[$unitIndex];
 }
 
-function handleOnlyOfficeCallback() {
-    global $conn;
-
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if ($data['status'] == 2) {
-        $fileId = $_GET['fileId'] ?? null;
-
-        if (!$fileId) return;
-
-        $stmt = mysqli_prepare($conn, "SELECT filepath FROM files WHERE id=?");
-        mysqli_stmt_bind_param($stmt, "i", $fileId);
-        mysqli_stmt_execute($stmt);
-
-        $file = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-
-        if ($file) {
-            $content = file_get_contents($data['url']);
-            $path = __DIR__ . '/../../' . ltrim($file['filepath'], '/');
-
-            file_put_contents($path, $content);
-        }
-    }
-
-    echo json_encode(['error' => 0]);
-}
-
 function getFolderTreeAPI() {
     header('Content-Type: application/json');
     
