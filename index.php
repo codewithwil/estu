@@ -56,12 +56,16 @@ switch ($url) {
         require 'pages/linkManager/index.php';
         break;
 
+    case 'userManager':
+        require 'pages/userManager/index.php';
+        break;
+
     case 'logout':
         require 'logout.php';
         break;
 
     default:
         http_response_code(404);
-        echo "404 - Halaman tidak ditemukan";
+        require 'pages/errors/404.php';
         break;
 }

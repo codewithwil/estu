@@ -1,3 +1,8 @@
+<?php
+session_start();
+$blockedMsg = $_SESSION['blocked_msg'] ?? '';
+unset($_SESSION['blocked_msg']);
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -36,7 +41,6 @@
             overflow: hidden;
         }
 
-        /* Subtle grid pattern */
         body::before {
             content: '';
             position: absolute;
@@ -438,13 +442,14 @@
                     <h2>Masuk ke Akun</h2>
                     <p>Silakan masukkan kredensial Anda</p>
                 </div>
-                <?php if (isset($_GET['blocked'])): ?>
-                    <p style="color:red;">Terlalu banyak percobaan. Coba lagi 24 jam.</p>
-                <?php endif; ?>
                 <?php if (isset($_GET['error'])): ?>
                     <p style="color:red;">Email atau password salah</p>
                 <?php endif; ?>
-
+                <?php if (isset($_GET['blocked'])): ?>
+                    <p style="color:#dc2626; margin-bottom: 16px; font-size: 14px; background: rgba(220,38,38,0.1); padding: 12px; border-radius: 8px; border: 1px solid rgba(220,38,38,0.2);">
+                        Terlalu banyak percobaan login. Silakan tunggu beberapa saat sebelum mencoba lagi.
+                    </p>
+                <?php endif; ?>
                 <form id="loginForm" method="POST" action="process/login.php">
                     <div class="form-group">
                         <label for="email">Email</label>

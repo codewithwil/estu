@@ -19,7 +19,6 @@ checkAuth();
     <div class="dashboard">
         <?php require_once __DIR__ . '/../dashboard/sidebar.php'; ?>
 
-        <!-- Main Content -->
         <main class="main-content">
             <header class="header">
                 <div class="search-box">

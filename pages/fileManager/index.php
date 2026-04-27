@@ -81,7 +81,7 @@ $viewMode = $_COOKIE['fileManagerView'] ?? 'grid';
                         </div>
 
                         <div class="dropdown">
-                            <button class="btn-primary" onclick="toggleDropdown('newMenu')">
+                            <button class="btn-primary" onclick="toggleFileDropdown('newMenu')">
                                 <i class="fas fa-plus"></i> Baru
                             </button>
                             <div class="dropdown-menu" id="newMenu">

@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initEventListeners() {
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown')) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (!e.target.closest('.fm-actions .dropdown')) {
+            document.querySelectorAll('.fm-actions .dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        }
+        if (!e.target.closest('.nav-dropdown')) {
+            document.querySelectorAll('.nav-dropdown .dropdown-menu').forEach(menu => {
                 menu.classList.remove('show');
             });
         }
@@ -371,12 +376,12 @@ function executeMove() {
     }
 }
 
-function toggleDropdown(menuId) {
+function toggleFileDropdown(menuId) {
     const menu = document.getElementById(menuId);
     if (!menu) return;
 
     const isShown = menu.classList.contains('show');
-    document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+    document.querySelectorAll('.fm-actions .dropdown-menu').forEach(m => m.classList.remove('show'));
     if (!isShown) menu.classList.add('show');
 }
 

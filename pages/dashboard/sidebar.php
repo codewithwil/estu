@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../functions/auth.php';
 $current = $_GET['url'] ?? 'dashboard';
 require_once __DIR__ . '../../../helper/route.php';
 ?>
@@ -36,7 +37,7 @@ require_once __DIR__ . '../../../helper/route.php';
                 </div>
             </div>
 
-            <!-- Management File Dropdown -->
+            <?php if (isAdmin()): ?>
             <div class="nav-dropdown">
                 <div class="dropdown-toggle" onclick="toggleDropdown(this)">
                     <i class="fas fa-folder-open"></i>
@@ -49,14 +50,10 @@ require_once __DIR__ . '../../../helper/route.php';
                     <a href="<?= url('fileManager') ?>" class="nav-subitem">
                         <i class="fas fa-list"></i> Semua File
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="<?= url('file-manager?action=upload') ?>" class="nav-subitem nav-subitem-primary">
-                        <i class="fas fa-cloud-upload-alt"></i> Upload File
-                    </a>
+
                 </div>
             </div>
 
-            <!-- NEW: Manajemen Link Dropdown -->
             <div class="nav-dropdown">
                 <div class="dropdown-toggle" onclick="toggleDropdown(this)">
                     <i class="fas fa-link"></i>
@@ -78,6 +75,26 @@ require_once __DIR__ . '../../../helper/route.php';
                     </a>
                 </div>
             </div>
+            <?php endif; ?>
+           
+            <?php if (isSuperadmin()): ?>
+            <div class="nav-dropdown">
+                <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Manajemen User</span>
+                    <?php if (isSuperadmin()): ?><span class="badge badge-new">NEW</span><?php endif; ?>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+
+                <div class="dropdown-menu">
+                    <a href="<?= url('userManager') ?>" class="nav-subitem <?= $current == 'userManager' ? 'active' : '' ?>">
+                        <i class="fas fa-users"></i> Semua User
+                    </a>
+                    <?php if (isSuperadmin()): ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
     </nav>
 
